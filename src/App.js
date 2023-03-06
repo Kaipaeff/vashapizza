@@ -3,6 +3,8 @@ import Header from './Components/Header/Header.jsx'
 import Categories from './Components/Categories/Categories.jsx'
 import Sort from './Components/Sort/Sort.jsx'
 import Card from './Components/Card/Card.jsx'
+import pizzas from './db/pizzas.json'
+console.log("pizzas:", pizzas)
 
 function App() {
   return (
@@ -16,10 +18,18 @@ function App() {
           </div>
           <h2 className="content__title">Все пиццы</h2>
           <div className="content__items">
-            <Card />
-            <Card />
-            <Card />
-            <Card />
+            {pizzas.map((el) => (
+              <Card key={el.id}
+                title={el.title}
+                price={el.price}
+                imageUrl={el.imageUrl}
+                sizes={el.sizes} 
+                types={el.types} 
+                category={el.category} 
+                rating={el.rating} 
+              />
+            ))}
+
           </div>
         </div>
       </div>

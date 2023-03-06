@@ -1,6 +1,6 @@
 import React, {useState} from "react"
 
-function Card() {
+function Card({title, price, imageUrl, sizes, types, category, rating }) {
 
   const [pizzaCount, setPizzaCount] = useState(0)
 
@@ -11,22 +11,22 @@ function Card() {
   return (
     <div className="pizza-block">
               <img className="pizza-block__image"
-                src="https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/b750f576-4a83-48e6-a283-5a8efb68c35d.jpg"
+                src={imageUrl}
                 alt="Pizza" />
-              <h4 className="pizza-block__title">Чизбургер-пицца</h4>
+              <h4 className="pizza-block__title">{title}</h4>
               <div className="pizza-block__selector">
                 <ul>
                   <li className="active">тонкое</li>
                   <li>традиционное</li>
                 </ul>
                 <ul>
-                  <li className="active">26 см.</li>
-                  <li>30 см.</li>
-                  <li>40 см.</li>
+                  <li className="active">{sizes[0]} см.</li>
+                  <li>{sizes[1]} см.</li>
+                  <li>{sizes[2]} см.</li>
                 </ul>
               </div>
               <div className="pizza-block__bottom">
-                <div className="pizza-block__price">от 395 ₽</div>
+                <div className="pizza-block__price">от {price} руб.</div>
                 <button className="button button--outline button--add" onClick={handleAdd}>
                   <svg width="12" height="12" viewBox="0 0 12 12" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path
