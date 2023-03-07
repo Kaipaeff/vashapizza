@@ -1,4 +1,5 @@
 import React from "react"
+import uniqid from 'uniqid'
 
 function Categories() {
 
@@ -11,15 +12,12 @@ function Categories() {
     setActiveIndex(index)
   }
 
-
-  // <li onClick={() => handleCategory(0)} className={activeIndex === 0 ? 'active' : ''}>Все</li>
-
   return (
     <div className="categories">
       <ul>
         {categories.map((el, index) => 
           <li 
-            key={index} 
+            key={uniqid()}
             onClick={() => handleCategory(index)} 
             className={activeIndex === index ? 'active' : ''}
             >
