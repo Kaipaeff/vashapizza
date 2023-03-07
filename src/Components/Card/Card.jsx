@@ -1,37 +1,43 @@
-import React, {useState} from "react"
-import uniqid from 'uniqid'
+import React, { useState } from 'react';
+import uniqid from 'uniqid';
 
+function Card({
+  title, price, imageUrl, sizes, types,
+}) {
+  const typeNames = ['тонкое', 'традиционное'];
 
-function Card({title, price, imageUrl, sizes, types, category, rating }) {
-
-  const typeNames = ['тонкое', 'традиционное']
-
-  const [pizzaCount, setPizzaCount] = useState(0)
-  const [activeType, setActiveType] = useState(0)
-  const [activeSize, setActiveSize] = useState(0)
+  const [pizzaCount, setPizzaCount] = useState(0);
+  const [activeType, setActiveType] = useState(0);
+  const [activeSize, setActiveSize] = useState(0);
 
   const handleAdd = () => {
-    setPizzaCount((prev) => prev + 1)
-  }
-  
+    setPizzaCount((prev) => prev + 1);
+  };
+
   return (
     <div className="pizza-block">
       <img className="pizza-block__image"
         src={imageUrl}
-        alt="Pizza" 
+        alt="Pizza"
       />
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
-        <ul> 
+        <ul>
           {types.map((el, i) => (
-            <li key={uniqid()} onClick={() => setActiveType(i)} className={activeType === i ? 'active' : ''}>{typeNames[el]}</li> 
+            <li
+              key={uniqid()}
+              onClick={() => setActiveType(i)}
+              className={activeType === i ? 'active' : ''}
+            >
+              {typeNames[el]}
+            </li>
           ))}
         </ul>
         <ul>
           {sizes.map((el, i) => (
-            <li 
-              key={uniqid()} 
-              onClick={() => setActiveSize(i)} 
+            <li
+              key={uniqid()}
+              onClick={() => setActiveSize(i)}
               className={activeSize === i ? 'active' : ''}
             >{el} см.
             </li>
@@ -51,8 +57,8 @@ function Card({title, price, imageUrl, sizes, types, category, rating }) {
         </button>
       </div>
     </div>
-            
-  )
+
+  );
 }
 
-export default Card
+export default Card;

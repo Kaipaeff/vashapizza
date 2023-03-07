@@ -1,4 +1,16 @@
+import React from 'react';
+import uniqid from 'uniqid';
+
 function Sort() {
+  const [openMenu, setOpenMenu] = React.useState(false);
+  const [activeSort, setActiveSort] = React.useState(0);
+  const list = ['популярности', 'цене', 'алфавиту'];
+
+  const onClickSortItem = (i) => {
+    setActiveSort(i);
+    setOpenMenu(false);
+  };
+
   return (
     <div className="sort">
       <div className="sort__label">
@@ -8,16 +20,26 @@ function Sort() {
             fill="#2C2C2C" />
         </svg>
         <b>Сортировка по:</b>
-        <span>популярности</span>
+        <span onClick={() => setOpenMenu(!openMenu)}>{list[activeSort]}</span>
       </div>
-      <div className="sort__popup">
-        <ul>
-          <li className="active">популярности</li>
-          <li>цене</li>
-          <li>алфавиту</li>
-        </ul>
-      </div>
+
+     {openMenu && (
+        <div className="sort__popup">
+          <ul>
+            {list.map((el, i) => (
+              <li
+                key={uniqid()}
+                onClick={() => onClickSortItem(i)}
+                className={activeSort === i ? 'active' : ''}
+              >
+                {el}
+              </li>
+            ))}
+          </ul>
+        </div>
+     )}
+
     </div>
-  )
+  );
 }
-export default Sort
+export default Sort;
