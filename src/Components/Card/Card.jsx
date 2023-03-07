@@ -2,11 +2,16 @@ import React, {useState} from "react"
 
 function Card({title, price, imageUrl, sizes, types, category, rating }) {
 
+  const typeNames = ['тонкое', 'традиционное']
+
   const [pizzaCount, setPizzaCount] = useState(0)
+  const [activeType, setActiveType] = useState(0)
+  const [activeSize, setActiveSize] = useState(0)
 
   const handleAdd = () => {
     setPizzaCount((prev) => prev + 1)
   }
+
 
   return (
     <div className="pizza-block">
@@ -15,14 +20,15 @@ function Card({title, price, imageUrl, sizes, types, category, rating }) {
                 alt="Pizza" />
               <h4 className="pizza-block__title">{title}</h4>
               <div className="pizza-block__selector">
-                <ul>
-                  <li className="active">тонкое</li>
-                  <li>традиционное</li>
+                <ul> 
+                  {types.map((el, i) => (
+                    <li onClick={() => setActiveType(i)} className={activeType === i ? 'active' : ''}>{typeNames[el]}</li> 
+                  ))}
                 </ul>
                 <ul>
-                  <li className="active">{sizes[0]} см.</li>
-                  <li>{sizes[1]} см.</li>
-                  <li>{sizes[2]} см.</li>
+                  {sizes.map((el, i) => (
+                    <li onClick={() => setActiveSize(i)} key={i} className={activeSize === i ? 'active' : ''}>{el} см.</li>
+                  ))}
                 </ul>
               </div>
               <div className="pizza-block__bottom">
