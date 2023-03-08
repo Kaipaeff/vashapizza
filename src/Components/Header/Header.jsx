@@ -1,14 +1,26 @@
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { useNavigate } from 'react-router-dom';
+import style from './Header.module.scss';
+
 function Header() {
+  const navigate = useNavigate();
+
+  const handleNav = () => {
+    navigate('/');
+    console.log('clicked logo');
+  };
   return (
     <div className="header">
       <div className="container">
-        <div className="header__logo">
+
+       <div className={style.header__logo} onClick={handleNav}>
           <img width="80" src="img/pizza-logo.png" alt="Pizza logo" />
           <div>
             <h1>Ваша Пицца</h1>
             <p>горячая пицца до вашей двери</p>
           </div>
         </div>
+
         <div className="header__cart">
           <a href="/cart.html" className="button button--cart">
             <span>520 ₽</span>

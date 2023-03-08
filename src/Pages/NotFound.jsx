@@ -1,7 +1,10 @@
 import React from 'react';
+import NotFoundBlock from '../Components/NotFoundBlock/index.jsx';
 
 export default function NotFound() {
   return (
-    <h1>'Ничего не найдено!'</h1>
+    <>
+      <NotFoundBlock />
+    </>
   );
 }
