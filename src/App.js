@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import Header from './Components/Header/Header.jsx';
 import NotFoundBlock from './Components/NotFoundBlock/index.jsx';
 import Home from './Pages/Home.jsx';
+import Cart from './Pages/Cart.jsx';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <div className="container">
           <Routes>
             <Route path='/' element={<Home />} />
+            <Route path='/cart' element={<Cart />} />
             <Route path='*' element={<NotFoundBlock />} />
           </Routes>
         </div>

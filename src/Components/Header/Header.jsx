@@ -1,28 +1,24 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import style from './Header.module.scss';
 
 function Header() {
-  const navigate = useNavigate();
-
-  const handleNav = () => {
-    navigate('/');
-    console.log('clicked logo');
-  };
   return (
     <div className="header">
       <div className="container">
 
-       <div className={style.header__logo} onClick={handleNav}>
-          <img width="80" src="img/pizza-logo.png" alt="Pizza logo" />
-          <div>
-            <h1>Ваша Пицца</h1>
-            <p>горячая пицца до вашей двери</p>
+       <Link to={'/'}>
+          <div className={style.header__logo}>
+            <img width="80" src="img/pizza-logo.png" alt="Pizza logo" />
+            <div>
+              <h1>Ваша Пицца</h1>
+              <p>горячая пицца до вашей двери</p>
+            </div>
           </div>
-        </div>
+       </Link>
 
         <div className="header__cart">
-          <a href="/cart.html" className="button button--cart">
+          <Link to={'/cart'} className="button button--cart">
             <span>520 ₽</span>
             <div className="button__delimiter"></div>
             <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -37,7 +33,7 @@ function Header() {
                 stroke="white" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
             <span>3</span>
-          </a>
+          </Link>
         </div>
       </div>
     </div>
