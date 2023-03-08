@@ -1,18 +1,25 @@
 import React from 'react';
-// import { Routes, Router } from 'react-router-dom';
+// eslint-disable-next-line import/no-extraneous-dependencies
+import { Routes, Route } from 'react-router-dom';
 import Header from './Components/Header/Header.jsx';
+import NotFoundBlock from './Components/NotFoundBlock/index.jsx';
 import Home from './Pages/Home.jsx';
-import NotFound from './Pages/NotFound.jsx';
+import Cart from './Pages/Cart.jsx';
 
 function App() {
   return (
     <div className="wrapper">
       <Header />
       <div className="content">
+
         <div className="container">
-          <Home />
-          <NotFound />
+          <Routes>
+            <Route path='/' element={<Home />} />
+            <Route path='/cart' element={<Cart />} />
+            <Route path='*' element={<NotFoundBlock />} />
+          </Routes>
         </div>
+
       </div>
     </div>
 
