@@ -10,7 +10,7 @@ function Header() {
        <Link to={'/'}>
           <div className={style.header__logo}>
             <img width="80" src="img/pizza-logo.png" alt="Pizza logo" />
-            <div>
+            <div className="header__logo__title">
               <h1>Ваша Пицца</h1>
               <p>горячая пицца до вашей двери</p>
             </div>

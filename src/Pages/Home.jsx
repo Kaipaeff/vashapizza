@@ -28,7 +28,7 @@ export default function Home() {
           <div className="content__items">
             {isLoading
               ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-              : pizzas.map((el) => (<Card key={el.id} {...el} />))
+              : pizzas.map((el) => <Card key={el.id} {...el} />)
             }
           </div>
     </>

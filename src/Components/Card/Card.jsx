@@ -15,7 +15,8 @@ function Card({
   };
 
   return (
-    <div className="pizza-block">
+    <div className='pizza-block-wrapper'>
+      <div className="pizza-block">
       <img className="pizza-block__image"
         src={imageUrl}
         alt="Pizza"
@@ -57,7 +58,7 @@ function Card({
         </button>
       </div>
     </div>
-
+    </div>
   );
 }
 
