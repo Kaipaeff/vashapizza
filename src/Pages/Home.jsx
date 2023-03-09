@@ -16,10 +16,11 @@ export default function Home() {
         .then((items) => setPizzas(items));
       setIsLoading(false);
     })();
+    window.scrollTo(0, 0);
   }, []);
 
   return (
-    <>
+    <div className='container'>
       <div className="content__top">
             <Categories />
             <Sort />
@@ -31,6 +32,6 @@ export default function Home() {
               : pizzas.map((el) => <Card key={el.id} {...el} />)
             }
           </div>
-    </>
+    </div>
   );
 }
