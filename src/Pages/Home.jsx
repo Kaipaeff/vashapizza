@@ -5,11 +5,13 @@ import Categories from '../Components/Categories/Categories.jsx';
 import Sort from '../Components/Sort/Sort.jsx';
 import Card from '../Components/Card/Card.jsx';
 import Skeleton from '../Components/Card/Skeleton.jsx';
+import Pagination from '../Components/Pagination/Pagination.jsx';
 
 export default function Home({ searchValue }) {
   const [pizzas, setPizzas] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [categoryIndex, setCategoryIndex] = React.useState(0);
+  const [currentPage, setCurrentPage] = React.useState(1);
   const [sortType, setSortType] = React.useState({
     name: 'по популярности',
     sortProperty: 'rating',
@@ -23,13 +25,13 @@ export default function Home({ searchValue }) {
       const order = sortType.sortProperty.includes('-') ? 'desc' : 'asc';
       const category = categoryIndex > 0 ? `category=${categoryIndex}` : '';
 
-      await fetch(`https://6318d0cb6b4c78d91b2fe4ef.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}`)
+      await fetch(`https://6318d0cb6b4c78d91b2fe4ef.mockapi.io/items?page=${currentPage}&limit=8&${category}&sortBy=${sortBy}&order=${order}`)
         .then((response) => response.json())
         .then((items) => setPizzas(items));
       setIsLoading(false);
     })();
     window.scrollTo(0, 0);
-  }, [categoryIndex, sortType]);
+  }, [categoryIndex, sortType, currentPage]);
 
   return (
     <div className='container'>
@@ -44,6 +46,7 @@ export default function Home({ searchValue }) {
               : pizzas.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((el) => <Card key={el.id} {...el} />)
             }
           </div>
+          <Pagination onChangePage={(number) => setCurrentPage(number)}/>
     </div>
   );
 }
