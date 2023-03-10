@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React from 'react';
 
 import Categories from '../Components/Categories/Categories.jsx';
@@ -8,22 +9,25 @@ import Skeleton from '../Components/Card/Skeleton.jsx';
 export default function Home() {
   const [pizzas, setPizzas] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
+  const [categoryIndex, setCategoryIndex] = React.useState(0);
+  const [sortType, setSortType] = React.useState(0);
 
   React.useEffect(() => {
     (async () => {
-      await fetch('https://6318d0cb6b4c78d91b2fe4ef.mockapi.io/items')
+      setIsLoading(true);
+      await fetch(`https://6318d0cb6b4c78d91b2fe4ef.mockapi.io/items?category=${categoryIndex}`)
         .then((response) => response.json())
         .then((items) => setPizzas(items));
       setIsLoading(false);
     })();
     window.scrollTo(0, 0);
-  }, []);
+  }, [categoryIndex, sortType]);
 
   return (
     <div className='container'>
       <div className="content__top">
-            <Categories />
-            <Sort />
+            <Categories value={categoryIndex} onChangeCategory={(i) => setCategoryIndex(i)}/>
+            <Sort value={sortType} onChangeSort={(i) => setSortType(i)}/>
           </div>
           <h2 className="content__title">Все пиццы</h2>
           <div className="content__items">

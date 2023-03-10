@@ -1,22 +1,16 @@
 import React from 'react';
 import uniqid from 'uniqid';
 
-function Categories() {
-  const [activeIndex, setActiveIndex] = React.useState(0);
-
+function Categories({ value, onChangeCategory }) {
   const categories = ['Все', 'Мясная', 'Куриная', 'Грибная', 'Сырная', 'Овощная'];
-
-  const handleCategory = (index) => {
-    setActiveIndex(index);
-  };
 
   return (
     <div className="categories">
       <ul>
-        {categories.map((el, index) => <li
+        {categories.map((el, i) => <li
             key={uniqid()}
-            onClick={() => handleCategory(index)}
-            className={activeIndex === index ? 'active' : ''}
+            onClick={() => onChangeCategory(i)}
+            className={value === i ? 'active' : ''}
             >
               {el}
           </li>)}
