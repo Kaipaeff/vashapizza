@@ -1,5 +1,6 @@
 // eslint-disable-next-line import/no-extraneous-dependencies
 import { Link } from 'react-router-dom';
+import Search from '../Search/Search.jsx';
 import style from './Header.module.scss';
 
 function Header() {
@@ -16,6 +17,8 @@ function Header() {
             </div>
           </div>
        </Link>
+
+       <Search />
 
         <div className="header__cart">
           <Link to={'/cart'} className="button button--cart">
