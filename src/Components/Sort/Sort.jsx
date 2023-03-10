@@ -4,9 +4,12 @@ import uniqid from 'uniqid';
 function Sort({ value, onChangeSort }) {
   const [openMenu, setOpenMenu] = React.useState(false);
   const list = [
-    { name: 'по популярности', sortProperty: 'rating' },
-    { name: 'по цене', sortProperty: 'price' },
-    { name: 'по алфавиту', sortProperty: 'title' },
+    { name: 'по популярности ↑', sortProperty: 'rating' },
+    { name: 'по популярности ↓', sortProperty: '-rating' },
+    { name: 'по цене ↑', sortProperty: 'price' },
+    { name: 'по цене ↓', sortProperty: '-price' },
+    { name: 'по алфавиту ↑', sortProperty: 'title' },
+    { name: 'по алфавиту ↓', sortProperty: '-title' },
   ];
 
   const onClickListItem = (i) => {
@@ -23,17 +26,17 @@ function Sort({ value, onChangeSort }) {
             fill="#2C2C2C" />
         </svg>
         <b>Сортировка:</b>
-        <span onClick={() => setOpenMenu(!openMenu)}>{list[value].name}</span>
+        <span onClick={() => setOpenMenu(!openMenu)}>{value.name}</span>
       </div>
 
      {openMenu && (
         <div className="sort__popup">
           <ul>
-            {list.map((obj, i) => (
+            {list.map((obj) => (
               <li
                 key={uniqid()}
-                onClick={() => onClickListItem(i)}
-                className={value.name === i ? 'active' : ''}
+                onClick={() => onClickListItem(obj)}
+                className={value.sortProperty === obj.sortProperty ? 'active' : ''}
               >
                 {obj.name}
               </li>
