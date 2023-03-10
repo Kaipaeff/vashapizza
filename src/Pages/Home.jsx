@@ -6,7 +6,7 @@ import Sort from '../Components/Sort/Sort.jsx';
 import Card from '../Components/Card/Card.jsx';
 import Skeleton from '../Components/Card/Skeleton.jsx';
 
-export default function Home() {
+export default function Home({ searchValue }) {
   const [pizzas, setPizzas] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [categoryIndex, setCategoryIndex] = React.useState(0);
@@ -41,7 +41,7 @@ export default function Home() {
           <div className="content__items">
             {isLoading
               ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-              : pizzas.map((el) => <Card key={el.id} {...el} />)
+              : pizzas.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((el) => <Card key={el.id} {...el} />)
             }
           </div>
     </div>
