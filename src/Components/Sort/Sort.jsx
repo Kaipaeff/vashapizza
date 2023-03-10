@@ -1,13 +1,16 @@
 import React from 'react';
 import uniqid from 'uniqid';
 
-function Sort() {
+function Sort({ value, onChangeSort }) {
   const [openMenu, setOpenMenu] = React.useState(false);
-  const [activeSort, setActiveSort] = React.useState(0);
-  const list = ['по популярности', 'по цене', 'по алфавиту'];
+  const list = [
+    { name: 'по популярности', sortProperty: 'rating' },
+    { name: 'по цене', sortProperty: 'price' },
+    { name: 'по алфавиту', sortProperty: 'title' },
+  ];
 
-  const onClickSortItem = (i) => {
-    setActiveSort(i);
+  const onClickListItem = (i) => {
+    onChangeSort(i);
     setOpenMenu(false);
   };
 
@@ -20,19 +23,19 @@ function Sort() {
             fill="#2C2C2C" />
         </svg>
         <b>Сортировка:</b>
-        <span onClick={() => setOpenMenu(!openMenu)}>{list[activeSort]}</span>
+        <span onClick={() => setOpenMenu(!openMenu)}>{list[value].name}</span>
       </div>
 
      {openMenu && (
         <div className="sort__popup">
           <ul>
-            {list.map((el, i) => (
+            {list.map((obj, i) => (
               <li
                 key={uniqid()}
-                onClick={() => onClickSortItem(i)}
-                className={activeSort === i ? 'active' : ''}
+                onClick={() => onClickListItem(i)}
+                className={value.name === i ? 'active' : ''}
               >
-                {el}
+                {obj.name}
               </li>
             ))}
           </ul>
