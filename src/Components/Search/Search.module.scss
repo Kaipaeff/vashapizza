@@ -1,0 +1,25 @@
+.root {
+  position: relative;
+  left: -120px;
+}
+
+.input {
+  border: 1px solid #c4c4c4;
+  padding: 12px 20px;
+  padding-left: 42px;
+  width: 400px;
+  border-radius: 25px;
+  font-size: 16px;
+
+  &:focus {
+    border: 1px solid #9e9e9e;
+  }
+}
+
+.search {
+  width: 28px;
+  position: absolute;
+  top: 11px;
+  left: 11px;
+  opacity: 0.4;
+}
