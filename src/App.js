@@ -9,7 +9,6 @@ import './scss/app.scss';
 
 function App() {
   const [searchValue, setSearchValue] = React.useState('');
-  console.log('searchValue:', searchValue);
 
   return (
     <div className="wrapper">

@@ -5,6 +5,7 @@ import Categories from '../Components/Categories/Categories.jsx';
 import Sort from '../Components/Sort/Sort.jsx';
 import Card from '../Components/Card/Card.jsx';
 import Skeleton from '../Components/Card/Skeleton.jsx';
+import Pagination from '../Components/Pagination/Pagination.jsx';
 
 export default function Home({ searchValue }) {
   const [pizzas, setPizzas] = React.useState([]);
@@ -44,6 +45,7 @@ export default function Home({ searchValue }) {
               : pizzas.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((el) => <Card key={el.id} {...el} />)
             }
           </div>
+          <Pagination />
     </div>
   );
 }
