@@ -10,12 +10,20 @@ export default function Home() {
   const [pizzas, setPizzas] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [categoryIndex, setCategoryIndex] = React.useState(0);
-  const [sortType, setSortType] = React.useState(0);
+  const [sortType, setSortType] = React.useState({
+    name: 'по популярности',
+    sortProperty: 'rating',
+  });
 
   React.useEffect(() => {
     (async () => {
       setIsLoading(true);
-      await fetch(`https://6318d0cb6b4c78d91b2fe4ef.mockapi.io/items?category=${categoryIndex}`)
+
+      const sortBy = sortType.sortProperty.replace('-', '');
+      const order = sortType.sortProperty.includes('-') ? 'desc' : 'asc';
+      const category = categoryIndex > 0 ? `category=${categoryIndex}` : '';
+
+      await fetch(`https://6318d0cb6b4c78d91b2fe4ef.mockapi.io/items?${category}&sortBy=${sortBy}&order=${order}`)
         .then((response) => response.json())
         .then((items) => setPizzas(items));
       setIsLoading(false);
