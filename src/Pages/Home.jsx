@@ -1,32 +1,37 @@
+/* eslint-disable import/no-cycle */
+/* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable max-len */
 import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { setCategoryId } from '../redux/slices/filterSlice';
 
 import Categories from '../Components/Categories/Categories.jsx';
 import Sort from '../Components/Sort/Sort.jsx';
 import Card from '../Components/Card/Card.jsx';
 import Skeleton from '../Components/Card/Skeleton.jsx';
 import Pagination from '../Components/Pagination/Pagination.jsx';
-// eslint-disable-next-line import/no-cycle
 import { SearchContext } from '../App';
 
 export default function Home() {
+  const dispatch = useDispatch();
+  const { categoryId, sort } = useSelector((state) => state.filter);
+
   const [pizzas, setPizzas] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [categoryIndex, setCategoryIndex] = React.useState(0);
   const [currentPage, setCurrentPage] = React.useState(1);
-  const [sortType, setSortType] = React.useState({
-    name: 'по популярности',
-    sortProperty: 'rating',
-  });
+
+  const onChangeCategory = (id) => {
+    dispatch(setCategoryId(id));
+  };
   const { searchValue } = React.useContext(SearchContext);
 
   React.useEffect(() => {
     (async () => {
       setIsLoading(true);
 
-      const sortBy = sortType.sortProperty.replace('-', '');
-      const order = sortType.sortProperty.includes('-') ? 'desc' : 'asc';
-      const category = categoryIndex > 0 ? `category=${categoryIndex}` : '';
+      const sortBy = sort.sortProperty.replace('-', '');
+      const order = sort.sortProperty.includes('-') ? 'desc' : 'asc';
+      const category = categoryId > 0 ? `category=${categoryId}` : '';
 
       await fetch(`https://6318d0cb6b4c78d91b2fe4ef.mockapi.io/items?page=${currentPage}&limit=8&${category}&sortBy=${sortBy}&order=${order}`)
         .then((response) => response.json())
@@ -34,13 +39,13 @@ export default function Home() {
       setIsLoading(false);
     })();
     window.scrollTo(0, 0);
-  }, [categoryIndex, sortType, currentPage]);
+  }, [categoryId, sort.sortProperty, currentPage]);
 
   return (
     <div className='container'>
       <div className="content__top">
-            <Categories value={categoryIndex} onChangeCategory={(i) => setCategoryIndex(i)}/>
-            <Sort value={sortType} onChangeSort={(i) => setSortType(i)}/>
+            <Categories value={categoryId} onChangeCategory={onChangeCategory}/>
+            <Sort />
           </div>
           <h2 className="content__title">Все пиццы</h2>
           <div className="content__items">
