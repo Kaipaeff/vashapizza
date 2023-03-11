@@ -6,8 +6,10 @@ import Sort from '../Components/Sort/Sort.jsx';
 import Card from '../Components/Card/Card.jsx';
 import Skeleton from '../Components/Card/Skeleton.jsx';
 import Pagination from '../Components/Pagination/Pagination.jsx';
+// eslint-disable-next-line import/no-cycle
+import { SearchContext } from '../App';
 
-export default function Home({ searchValue }) {
+export default function Home() {
   const [pizzas, setPizzas] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
   const [categoryIndex, setCategoryIndex] = React.useState(0);
@@ -16,6 +18,7 @@ export default function Home({ searchValue }) {
     name: 'по популярности',
     sortProperty: 'rating',
   });
+  const { searchValue } = React.useContext(SearchContext);
 
   React.useEffect(() => {
     (async () => {
