@@ -6,14 +6,11 @@ import NotFoundBlock from './Components/NotFoundBlock/index.jsx';
 import Home from './Pages/Home.jsx';
 import Cart from './Pages/Cart.jsx';
 import './scss/app.scss';
-import { useSelector, useDispatch } from 'react-redux';
 
 export const SearchContext = React.createContext();
 
 function App() {
   const [searchValue, setSearchValue] = React.useState('');
-  // const filter = useSelector((state) => state.filter.value);
-  // const dispatch = useDispatch();
 
   return (
     <div className="wrapper">
