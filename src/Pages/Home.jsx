@@ -2,6 +2,7 @@
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable max-len */
 import React from 'react';
+import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 import { setCategoryId } from '../redux/slices/filterSlice';
 
@@ -33,11 +34,18 @@ export default function Home() {
       const order = sort.sortProperty.includes('-') ? 'desc' : 'asc';
       const category = categoryId > 0 ? `category=${categoryId}` : '';
 
-      await fetch(`https://6318d0cb6b4c78d91b2fe4ef.mockapi.io/items?page=${currentPage}&limit=8&${category}&sortBy=${sortBy}&order=${order}`)
-        .then((response) => response.json())
-        .then((items) => setPizzas(items));
-      setIsLoading(false);
-    })();
+      // await fetch(`https://6318d0cb6b4c78d91b2fe4ef.mockapi.io/items?page=${currentPage}&limit=8&${category}&sortBy=${sortBy}&order=${order}`)
+      //   .then((response) => response.json())
+      //   .then((items) => setPizzas(items));
+      // setIsLoading(false);
+
+      axios.get(`https://6318d0cb6b4c78d91b2fe4ef.mockapi.io/items?page=${currentPage}&limit=8&${category}&sortBy=${sortBy}&order=${order}`)
+        .then(((res) => {
+          setPizzas(res.data);
+          setIsLoading(false);
+        }));
+    }
+    )();
     window.scrollTo(0, 0);
   }, [categoryId, sort.sortProperty, currentPage]);
 
