@@ -4,7 +4,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCategoryId } from '../redux/slices/filterSlice';
+import { setCategoryId, setCurrentPage } from '../redux/slices/filterSlice';
 
 import Categories from '../Components/Categories/Categories.jsx';
 import Sort from '../Components/Sort/Sort.jsx';
@@ -14,17 +14,20 @@ import Pagination from '../Components/Pagination/Pagination.jsx';
 import { SearchContext } from '../App';
 
 export default function Home() {
+  const { searchValue } = React.useContext(SearchContext);
   const dispatch = useDispatch();
-  const { categoryId, sort } = useSelector((state) => state.filter);
+  const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
 
   const [pizzas, setPizzas] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
-  const [currentPage, setCurrentPage] = React.useState(1);
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
   };
-  const { searchValue } = React.useContext(SearchContext);
+
+  const onChangePage = (number) => {
+    dispatch(setCurrentPage(number));
+  };
 
   React.useEffect(() => {
     (async () => {
@@ -47,7 +50,7 @@ export default function Home() {
     }
     )();
     window.scrollTo(0, 0);
-  }, [categoryId, sort.sortProperty, currentPage]);
+  }, [categoryId, sort.sortProperty, searchValue, currentPage]);
 
   return (
     <div className='container'>
@@ -62,7 +65,7 @@ export default function Home() {
               : pizzas.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((el) => <Card key={el.id} {...el} />)
             }
           </div>
-          <Pagination onChangePage={(number) => setCurrentPage(number)}/>
+          <Pagination currentPage={currentPage} onChangePage={onChangePage}/>
     </div>
   );
 }
