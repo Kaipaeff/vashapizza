@@ -4,6 +4,7 @@
 import React from 'react';
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
+// import qs from 'qs';
 import { setCategoryId, setCurrentPage } from '../redux/slices/filterSlice';
 
 import Categories from '../Components/Categories/Categories.jsx';
