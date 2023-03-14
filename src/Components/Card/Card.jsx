@@ -30,7 +30,7 @@ function Card({
       price,
       imageUrl,
       type: typeNames[activeType],
-      size: activeSize,
+      size: sizes[activeSize],
     };
     dispatch(addItem(item));
   };
@@ -45,13 +45,12 @@ function Card({
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
-          {types.map((el, i) => (
+          {types.map((typeId) => (
             <li
               key={uniqid()}
-              onClick={() => setActiveType(i)}
-              className={activeType === i ? 'active' : ''}
-            >
-              {typeNames[el]}
+              onClick={() => setActiveType(typeId)}
+              className={activeType === typeId ? 'active' : ''}
+            >{typeNames[typeId]}
             </li>
           ))}
         </ul>
