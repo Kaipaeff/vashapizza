@@ -20,11 +20,6 @@ export default function Search() {
     setSearchValue(str);
   }, 500), []);
 
-  // const onChangeInput = (event) => {
-  //   setSearchValue(event.target.value);
-  //   testDebounce();
-  // };
-
   const onChangeInput = (event) => {
     setValue(event.target.value);
     updateSearchValue(event.target.value);
