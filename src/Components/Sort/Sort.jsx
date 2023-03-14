@@ -17,6 +17,7 @@ function Sort() {
   /* eslint-disable no-unused-vars */
   const dispatch = useDispatch();
   const sort = useSelector((state) => state.filter.sort);
+  const sortRef = React.useRef();
 
   const [openMenu, setOpenMenu] = React.useState(false);
 
@@ -25,8 +26,23 @@ function Sort() {
     setOpenMenu(false);
   };
 
+  React.useEffect(() => {
+    const handleClickOutside = (event) => {
+      const path = event.composedPath();
+      if (!path.includes(sortRef.current)) {
+        setOpenMenu(false);
+      }
+    };
+
+    document.body.addEventListener('click', handleClickOutside);
+
+    return () => {
+      document.body.removeEventListener('click', handleClickOutside);
+    };
+  }, []);
+
   return (
-    <div className="sort">
+    <div ref={sortRef} className="sort">
       <div className="sort__label">
         <svg width="10" height="6" viewBox="0 0 10 6" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path
