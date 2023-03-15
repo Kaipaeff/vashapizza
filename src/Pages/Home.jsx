@@ -43,11 +43,16 @@ export default function Home() {
       //   .then((items) => setPizzas(items));
       // setIsLoading(false);
 
-      axios.get(`https://6318d0cb6b4c78d91b2fe4ef.mockapi.io/items?page=${currentPage}&limit=8&${category}&sortBy=${sortBy}&order=${order}`)
-        .then(((res) => {
-          setPizzas(res.data);
-          setIsLoading(false);
-        }));
+      try {
+        const res = await axios.get(`https://6318d0cb6b4c78d91b2fe4ef.mockapi.io/items?page=${currentPage}&limit=8&${category}&sortBy=${sortBy}&order=${order}`);
+
+        setPizzas(res.data);
+      } catch (error) {
+        alert('Ошибка получения данных с сервера mockAPI');
+        console.log('Error get data from server', error);
+      } finally {
+        setIsLoading(false);
+      }
     }
     )();
     window.scrollTo(0, 0);
