@@ -6,6 +6,7 @@ import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux';
 // import qs from 'qs';
 import { setCategoryId, setCurrentPage } from '../redux/slices/filterSlice';
+import { setItems } from '../redux/slices/PizzaSlice';
 
 import Categories from '../Components/Categories/Categories.jsx';
 import Sort from '../Components/Sort/Sort.jsx';
@@ -18,8 +19,9 @@ export default function Home() {
   const { searchValue } = React.useContext(SearchContext);
   const dispatch = useDispatch();
   const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
+  const { items } = useSelector((state) => state.pizza.pizzas);
 
-  const [pizzas, setPizzas] = React.useState([]);
+  // const [pizzas, setPizzas] = React.useState([]);
   const [isLoading, setIsLoading] = React.useState(true);
 
   const onChangeCategory = (id) => {
@@ -46,7 +48,8 @@ export default function Home() {
       try {
         const res = await axios.get(`https://6318d0cb6b4c78d91b2fe4ef.mockapi.io/items?page=${currentPage}&limit=8&${category}&sortBy=${sortBy}&order=${order}`);
 
-        setPizzas(res.data);
+        // setPizzas(res.data);
+        dispatch(setItems(res.data));
       } catch (error) {
         alert('Ошибка получения данных с сервера mockAPI');
         console.log('Error get data from server', error);
@@ -68,7 +71,7 @@ export default function Home() {
           <div className="content__items">
             {isLoading
               ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-              : pizzas.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((el) => <Card key={el.id} {...el} />)
+              : items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((el) => <Card key={el.id} {...el} />)
             }
           </div>
           <Pagination currentPage={currentPage} onChangePage={onChangePage}/>
