@@ -5,6 +5,7 @@ import Header from './Components/Header/Header.jsx';
 import NotFoundBlock from './Components/NotFoundBlock/index.jsx';
 import Home from './Pages/Home.jsx';
 import Cart from './Pages/Cart.jsx';
+import FullPizza from './Pages/FullPizza.jsx';
 import './scss/app.scss';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Routes>
           <Route path='/' element={<Home />} />
           <Route path='/cart' element={<Cart />} />
+          <Route path='/pizza/:id' element={<FullPizza />} />
           <Route path='*' element={<NotFoundBlock />} />
         </Routes>
 
