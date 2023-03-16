@@ -2,7 +2,7 @@
 import React from 'react';
 import uniqid from 'uniqid';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSort } from '../../redux/slices/filterSlice';
+import { selectSort, setSort } from '../../redux/slices/filterSlice';
 
 const list = [
   { name: 'по популярности ↑', sortProperty: 'rating' },
@@ -16,7 +16,7 @@ const list = [
 function Sort() {
   /* eslint-disable no-unused-vars */
   const dispatch = useDispatch();
-  const sort = useSelector((state) => state.filter.sort);
+  const sort = useSelector(selectSort);
   const sortRef = React.useRef();
 
   const [openMenu, setOpenMenu] = React.useState(false);

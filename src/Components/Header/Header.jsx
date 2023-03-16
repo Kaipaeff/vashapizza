@@ -3,9 +3,10 @@ import { useSelector } from 'react-redux';
 import style from './Header.module.scss';
 // eslint-disable-next-line
 import Search from '../Search/Search.jsx';
+import { selectCart } from '../../redux/slices/CartSlice';
 
 function Header() {
-  const { totalPrice, items } = useSelector((state) => state.cart);
+  const { totalPrice, items } = useSelector(selectCart);
 
   const totalCount = items.reduce((sum, item) => sum + item.count, 0);
 
