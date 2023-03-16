@@ -11,12 +11,14 @@ import Sort from '../Components/Sort/Sort.jsx';
 import Card from '../Components/Card/Card.jsx';
 import Skeleton from '../Components/Card/Skeleton.jsx';
 import Pagination from '../Components/Pagination/Pagination.jsx';
-import { SearchContext } from '../App';
 
 export default function Home() {
-  const { searchValue } = React.useContext(SearchContext);
   const dispatch = useDispatch();
-  const { categoryId, sort, currentPage } = useSelector(selectFilter);
+
+  const {
+    categoryId, sort, currentPage, searchValue,
+  } = useSelector(selectFilter);
+
   const { items, status } = useSelector(selectPizzaData);
 
   const onChangeCategory = (id) => {

@@ -1,23 +1,23 @@
 import React from 'react';
 import debounce from 'lodash.debounce';
 // eslint-disable-next-line import/no-cycle
-import { SearchContext } from '../../App';
+import { useDispatch } from 'react-redux';
 import style from './Search.module.scss';
+import { setSearchValue } from '../../redux/slices/filterSlice';
 
 export default function Search() {
+  const dispatch = useDispatch();
   const [value, setValue] = React.useState('');
-  const { setSearchValue } = React.useContext(SearchContext);
-
   const inputRef = React.useRef();
 
   const onClickClear = () => {
-    setSearchValue('');
+    dispatch(setSearchValue(''));
     setValue('');
     inputRef.current.focus();
   };
 
   const updateSearchValue = React.useCallback(debounce((str) => {
-    setSearchValue(str);
+    dispatch(setSearchValue(str));
   }, 500), []);
 
   const onChangeInput = (event) => {
