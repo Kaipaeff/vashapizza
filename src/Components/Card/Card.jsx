@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import uniqid from 'uniqid';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addItem } from '../../redux/slices/CartSlice';
+import { addItem, selectCardItemById } from '../../redux/slices/CartSlice';
 
 const typeNames = ['тонкое', 'традиционное'];
 
@@ -15,7 +15,7 @@ function Card({
 
   const dispatch = useDispatch();
 
-  const cartItem = useSelector((state) => state.cart.items.find((obj) => obj.id === id));
+  const cartItem = useSelector(selectCardItemById(id));
 
   const addedCount = cartItem ? cartItem.count : 0;
 

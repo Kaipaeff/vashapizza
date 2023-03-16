@@ -3,21 +3,24 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setCategoryId, setCurrentPage } from '../redux/slices/filterSlice';
-import { fetchPizzas } from '../redux/slices/PizzaSlice';
+import { Link } from 'react-router-dom';
+import { selectFilter, setCategoryId, setCurrentPage } from '../redux/slices/filterSlice';
+import { fetchPizzas, selectPizzaData } from '../redux/slices/PizzaSlice';
 
 import Categories from '../Components/Categories/Categories.jsx';
 import Sort from '../Components/Sort/Sort.jsx';
 import Card from '../Components/Card/Card.jsx';
 import Skeleton from '../Components/Card/Skeleton.jsx';
 import Pagination from '../Components/Pagination/Pagination.jsx';
-import { SearchContext } from '../App';
 
 export default function Home() {
-  const { searchValue } = React.useContext(SearchContext);
   const dispatch = useDispatch();
-  const { categoryId, sort, currentPage } = useSelector((state) => state.filter);
-  const { items, status } = useSelector((state) => state.pizza);
+
+  const {
+    categoryId, sort, currentPage, searchValue,
+  } = useSelector(selectFilter);
+
+  const { items, status } = useSelector(selectPizzaData);
 
   const onChangeCategory = (id) => {
     dispatch(setCategoryId(id));
@@ -62,7 +65,7 @@ export default function Home() {
                 <div className="content__items">
                   {status === 'loading'
                     ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-                    : items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((el) => <Card key={el.id} {...el} />)
+                    : items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((el) => <Link to={`/pizza/${el.id}`} key={el.id} ><Card {...el} /></Link>)
                   }
                 </div>
               )
