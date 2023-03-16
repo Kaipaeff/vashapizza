@@ -3,6 +3,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { selectFilter, setCategoryId, setCurrentPage } from '../redux/slices/filterSlice';
 import { fetchPizzas, selectPizzaData } from '../redux/slices/PizzaSlice';
 
@@ -64,7 +65,7 @@ export default function Home() {
                 <div className="content__items">
                   {status === 'loading'
                     ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-                    : items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((el) => <Card key={el.id} {...el} />)
+                    : items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((el) => <Link to={`/pizza/${el.id}`} key={el.id} ><Card {...el} /></Link>)
                   }
                 </div>
               )

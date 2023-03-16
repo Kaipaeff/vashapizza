@@ -4,7 +4,6 @@ import { useParams } from 'react-router-dom';
 
 export default function FullPizza() {
   const [pizza, setPizza] = React.useState();
-  console.log('pizza===========>>>>>>>>>>>>>>>', pizza);
   const { id } = useParams();
 
   React.useEffect(() => {
