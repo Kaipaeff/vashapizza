@@ -29,6 +29,7 @@ export default function FullPizza() {
   return (
     <div className='container'>
       <h1>{pizza.title}</h1>
+      <p onClick={() => navigate(-1)} style={{ cursor: 'pointer' }}>←назад</p>
       <img src={pizza.imageUrl} alt="pizza" />
       <p>Цена {pizza.price} руб.</p>
     </div>

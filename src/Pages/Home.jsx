@@ -3,18 +3,24 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { selectFilter, setCategoryId, setCurrentPage } from '../redux/slices/filterSlice';
+import { Link, useNavigate } from 'react-router-dom';
+import qs from 'qs';
+import {
+  selectFilter, setCategoryId, setCurrentPage, setFilters,
+} from '../redux/slices/filterSlice';
 import { fetchPizzas, selectPizzaData } from '../redux/slices/PizzaSlice';
 
 import Categories from '../Components/Categories/Categories.jsx';
-import Sort from '../Components/Sort/Sort.jsx';
+import Sort, { list } from '../Components/Sort/Sort.jsx';
 import Card from '../Components/Card/Card.jsx';
 import Skeleton from '../Components/Card/Skeleton.jsx';
 import Pagination from '../Components/Pagination/Pagination.jsx';
 
 export default function Home() {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const isSearch = React.useRef(false);
+  const isMounted = React.useRef(false);
 
   const {
     categoryId, sort, currentPage, searchValue,
@@ -30,6 +36,8 @@ export default function Home() {
     dispatch(setCurrentPage(number));
   };
 
+  /// //////////////////
+
   React.useEffect(() => {
     const sortBy = sort.sortProperty.replace('-', '');
     const order = sort.sortProperty.includes('-') ? 'desc' : 'asc';
@@ -43,6 +51,61 @@ export default function Home() {
     }));
     window.scrollTo(0, 0);
   }, [categoryId, sort.sortProperty, searchValue, currentPage, dispatch]);
+
+  /// /////////////////
+
+  React.useEffect(() => {
+    if (isMounted.current) {
+      const queryString = qs.stringify({
+        sortProperty: sort.sortProperty,
+        categoryId,
+        currentPage,
+      });
+      navigate(`?${queryString}`);
+    }
+    isMounted.current = true;
+  }, [categoryId, sort.sortProperty, currentPage, navigate]);
+
+  /// ///////////////
+
+  React.useEffect(() => {
+    if (window.location.search) {
+      const params = qs.parse(window.location.search.substring(1));
+
+      const sortProp = list.find((obj) => obj.sortProperty === params.sortProperty);
+
+      dispatch(
+        setFilters({
+          ...params,
+          sortProp,
+        }),
+      );
+
+      isSearch.current = true;
+    }
+  }, [dispatch]);
+
+  /// //////////////////
+
+  React.useEffect(() => {
+    const sortBy = sort.sortProperty.replace('-', '');
+    const order = sort.sortProperty.includes('-') ? 'desc' : 'asc';
+    const category = categoryId > 0 ? `category=${categoryId}` : '';
+    window.scrollTo(0, 0);
+
+    if (!isSearch.current) {
+      fetchPizzas({
+        sortBy,
+        order,
+        category,
+        currentPage,
+      });
+    }
+
+    isSearch.current = false;
+  }, [categoryId, sort.sortProperty, searchValue, currentPage]);
+
+  /// ///////////////////
 
   return (
     <div className='container'>
