@@ -4,7 +4,7 @@ import uniqid from 'uniqid';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectSort, setSort } from '../../redux/slices/filterSlice';
 
-const list = [
+export const list = [
   { name: 'по популярности ↑', sortProperty: 'rating' },
   { name: 'по популярности ↓', sortProperty: '-rating' },
   { name: 'по цене ↑', sortProperty: 'price' },
