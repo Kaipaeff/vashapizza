@@ -1,10 +1,10 @@
-/* eslint-disable import/no-cycle */
-import React from 'react';
+/* eslint-disable import/no-unresolved */
+/* eslint-disable react/jsx-filename-extension */
 import { Routes, Route } from 'react-router-dom';
 import NotFoundBlock from './Components/NotFoundBlock/index.jsx';
 import Home from './Pages/Home.jsx';
 import Cart from './Pages/Cart.jsx';
-import FullPizza from './Pages/FullPizza.jsx';
+import FullPizza from './Pages/FullPizza';
 import './scss/app.scss';
 import MainLayout from './Layouts/MainLayout.jsx';
 

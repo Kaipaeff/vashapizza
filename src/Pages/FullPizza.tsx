@@ -1,9 +1,15 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import axios from 'axios';
 import { useParams, useNavigate } from 'react-router-dom';
 
 export default function FullPizza() {
-  const [pizza, setPizza] = React.useState();
+  const [pizza, setPizza] = React.useState<{
+    title: string,
+    imageUrl: string,
+    price: number,
+  }>();
+
   const { id } = useParams();
 
   const navigate = useNavigate();
@@ -23,7 +29,8 @@ export default function FullPizza() {
   }, [id, navigate]);
 
   if (!pizza) {
-    return 'Loading...';
+    // eslint-disable-next-line react/jsx-filename-extension
+    return <>Loading...</>;
   }
 
   return (
