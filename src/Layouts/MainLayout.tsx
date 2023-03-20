@@ -1,8 +1,9 @@
+import React from 'react';
 import { Outlet } from 'react-router-dom';
+// @ts-ignore
 import Header from '../Components/Header/Header.tsx';
 
-export default function MainLayout() {
-  return (
+const MainLayout: React.FC = () => (
       <div className="wrapper">
         <Header />
         <div className="content">
@@ -10,5 +11,6 @@ export default function MainLayout() {
         </div>
 
       </div>
-  );
-}
+);
+
+export default MainLayout;

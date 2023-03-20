@@ -1,11 +1,14 @@
 /* eslint-disable import/no-unresolved */
 import { Routes, Route } from 'react-router-dom';
-import NotFoundBlock from './Components/NotFoundBlock/index.jsx';
-import Home from './Pages/Home.jsx';
-import Cart from './Pages/Cart.jsx';
+import NotFoundBlock from './Components/NotFoundBlock/index';
+// @ts-ignore
+import Home from './Pages/Home.tsx';
+// @ts-ignore
+import Cart from './Pages/Cart.tsx';
 import FullPizza from './Pages/FullPizza';
 import './scss/app.scss';
-import MainLayout from './Layouts/MainLayout.jsx';
+// @ts-ignore
+import MainLayout from './Layouts/MainLayout.tsx';
 
 function App() {
   return (

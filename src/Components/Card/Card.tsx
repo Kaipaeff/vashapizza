@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import uniqid from 'uniqid';
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -6,22 +6,26 @@ import { addItem, selectCardItemById } from '../../redux/slices/CartSlice';
 
 const typeNames = ['тонкое', 'традиционное'];
 
-function Card({
+type CardProps = {
+  id: string
+  title: string
+  price: number
+  imageUrl: string
+  sizes: any
+  types: any
+}
+
+const Card: React.FC<CardProps> = ({
   id, title, price, imageUrl, sizes, types,
-}) {
-  // const [setPizzaCount] = useState(0);
-  const [activeType, setActiveType] = useState(0);
-  const [activeSize, setActiveSize] = useState(0);
+}) => {
+  const [activeType, setActiveType] = useState<number>(0);
+  const [activeSize, setActiveSize] = useState<number>(0);
 
   const dispatch = useDispatch();
 
   const cartItem = useSelector(selectCardItemById(id));
 
   const addedCount = cartItem ? cartItem.count : 0;
-
-  // const handleAddButton = () => {
-  //   setPizzaCount((prev) => prev + 1);
-  // };
 
   const onClickAdd = () => {
     const item = {
@@ -45,7 +49,7 @@ function Card({
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
-          {types.map((typeId) => (
+          {types.map((typeId: number) => (
             <li
               key={uniqid()}
               onClick={() => setActiveType(typeId)}
@@ -55,7 +59,7 @@ function Card({
           ))}
         </ul>
         <ul>
-          {sizes.map((el, i) => (
+          {sizes.map((el: number, i: number) => (
             <li
               key={uniqid()}
               onClick={() => setActiveSize(i)}
@@ -80,6 +84,6 @@ function Card({
     </div>
     </div>
   );
-}
+};
 
 export default Card;

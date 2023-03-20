@@ -8,14 +8,18 @@ import {
   selectFilter, setCategoryId, setCurrentPage, setFilters,
 } from '../redux/slices/filterSlice';
 import { fetchPizzas, selectPizzaData } from '../redux/slices/PizzaSlice';
-
+// @ts-ignore
 import Categories from '../Components/Categories/Categories.tsx';
+// @ts-ignore
 import Sort, { list } from '../Components/Sort/Sort.tsx';
-import Card from '../Components/Card/Card.jsx';
-import Skeleton from '../Components/Card/Skeleton.jsx';
-import Pagination from '../Components/Pagination/Pagination.jsx';
+// @ts-ignore
+import Card from '../Components/Card/Card.tsx';
+// @ts-ignore
+import Skeleton from '../Components/Card/Skeleton.tsx';
+// @ts-ignore
+import Pagination from '../Components/Pagination/Pagination.tsx';
 
-export default function Home() {
+const Home: React.FC = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const isSearch = React.useRef(false);
@@ -27,12 +31,12 @@ export default function Home() {
 
   const { items, status } = useSelector(selectPizzaData);
 
-  const onChangeCategory = (id) => {
+  const onChangeCategory = (id: number) => {
     dispatch(setCategoryId(id));
   };
 
-  const onChangePage = (number) => {
-    dispatch(setCurrentPage(number));
+  const onChangePage = (page: number) => {
+    dispatch(setCurrentPage(page));
   };
 
   /// //////////////////
@@ -42,12 +46,15 @@ export default function Home() {
     const order = sort.sortProperty.includes('-') ? 'desc' : 'asc';
     const category = categoryId > 0 ? `category=${categoryId}` : '';
 
-    dispatch(fetchPizzas({
-      sortBy,
-      order,
-      category,
-      currentPage,
-    }));
+    dispatch(
+      // @ts-ignore
+      fetchPizzas({
+        sortBy,
+        order,
+        category,
+        currentPage,
+      }),
+    );
     window.scrollTo(0, 0);
   }, [categoryId, sort.sortProperty, searchValue, currentPage, dispatch]);
 
@@ -71,7 +78,7 @@ export default function Home() {
     if (window.location.search) {
       const params = qs.parse(window.location.search.substring(1));
 
-      const sortProp = list.find((obj) => obj.sortProperty === params.sortProperty);
+      const sortProp = list.find((obj: any) => obj.sortProperty === params.sortProperty);
 
       dispatch(
         setFilters({
@@ -93,6 +100,7 @@ export default function Home() {
     window.scrollTo(0, 0);
 
     if (!isSearch.current) {
+      // @ts-ignore
       fetchPizzas({
         sortBy,
         order,
@@ -127,7 +135,7 @@ export default function Home() {
                 <div className="content__items">
                   {status === 'loading'
                     ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-                    : items.filter((item) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((el) => <Link to={`/pizza/${el.id}`} key={el.id} ><Card {...el} /></Link>)
+                    : items.filter((item: any) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((el: any) => <Link to={`/pizza/${el.id}`} key={el.id} ><Card {...el} /></Link>)
                   }
                 </div>
               )
@@ -136,4 +144,6 @@ export default function Home() {
           <Pagination currentPage={currentPage} onChangePage={onChangePage}/>
     </div>
   );
-}
+};
+
+export default Home;
