@@ -1,7 +1,8 @@
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import style from './Header.module.scss';
-import Search from '../Search/Search.jsx';
+// @ts-ignore
+import Search from '../Search/Search.tsx';
 import { selectCart } from '../../redux/slices/CartSlice';
 
 function Header() {

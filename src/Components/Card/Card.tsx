@@ -11,8 +11,8 @@ type CardProps = {
   title: string
   price: number
   imageUrl: string
-  sizes: number
-  types: number
+  sizes: any
+  types: any
 }
 
 const Card: React.FC<CardProps> = ({
@@ -49,7 +49,7 @@ const Card: React.FC<CardProps> = ({
       <h4 className="pizza-block__title">{title}</h4>
       <div className="pizza-block__selector">
         <ul>
-          {types.map((typeId) => (
+          {types.map((typeId: number) => (
             <li
               key={uniqid()}
               onClick={() => setActiveType(typeId)}

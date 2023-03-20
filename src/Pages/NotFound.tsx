@@ -1,9 +1,7 @@
-import NotFoundBlock from '../Components/NotFoundBlock/index.jsx';
+import React from 'react';
+// @ts-ignore
+import NotFoundBlock from '../Components/NotFoundBlock/index.tsx';
 
-export default function NotFound() {
-  return (
-    <>
-      <NotFoundBlock />
-    </>
-  );
-}
+const NotFound: React.FC = () => <NotFoundBlock />;
+
+export default NotFound;
