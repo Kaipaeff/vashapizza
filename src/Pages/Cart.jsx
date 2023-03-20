@@ -1,9 +1,10 @@
+/* eslint-disable no-alert */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import CartItem from '../Components/CartItem/CartItem.jsx';
 import { clearItems, selectCart } from '../redux/slices/CartSlice.js';
-import CartEmpty from '../Components/CartEmpty/CartEmpty.jsx';
+import CartEmpty from '../Components/CartEmpty/CartEmpty.tsx';
 
 export default function Cart() {
   const dispatch = useDispatch();
