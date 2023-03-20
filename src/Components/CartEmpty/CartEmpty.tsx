@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import { Link } from 'react-router-dom';
 
 export default function CartEmpty() {

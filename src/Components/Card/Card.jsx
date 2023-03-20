@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import uniqid from 'uniqid';
 import { useDispatch, useSelector } from 'react-redux';
 

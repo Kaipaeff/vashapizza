@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-filename-extension */
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import style from './Header.module.scss';

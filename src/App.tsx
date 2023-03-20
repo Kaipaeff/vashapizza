@@ -1,5 +1,4 @@
 /* eslint-disable import/no-unresolved */
-/* eslint-disable react/jsx-filename-extension */
 import { Routes, Route } from 'react-router-dom';
 import NotFoundBlock from './Components/NotFoundBlock/index.jsx';
 import Home from './Pages/Home.jsx';
