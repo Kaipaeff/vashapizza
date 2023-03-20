@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
 import { Routes, Route } from 'react-router-dom';
-import NotFoundBlock from './Components/NotFoundBlock/index.jsx';
+import NotFoundBlock from './Components/NotFoundBlock/index';
 import Home from './Pages/Home.jsx';
 import Cart from './Pages/Cart.jsx';
 import FullPizza from './Pages/FullPizza';

@@ -13,7 +13,7 @@ import Categories from '../Components/Categories/Categories.tsx';
 import Sort, { list } from '../Components/Sort/Sort.tsx';
 import Card from '../Components/Card/Card.jsx';
 import Skeleton from '../Components/Card/Skeleton.jsx';
-import Pagination from '../Components/Pagination/Pagination.jsx';
+import Pagination from '../Components/Pagination/Pagination.tsx';
 
 export default function Home() {
   const dispatch = useDispatch();
