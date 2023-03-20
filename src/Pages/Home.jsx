@@ -1,4 +1,3 @@
-/* eslint-disable import/no-cycle */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable max-len */
 import React from 'react';
@@ -10,8 +9,8 @@ import {
 } from '../redux/slices/filterSlice';
 import { fetchPizzas, selectPizzaData } from '../redux/slices/PizzaSlice';
 
-import Categories from '../Components/Categories/Categories.jsx';
-import Sort, { list } from '../Components/Sort/Sort.jsx';
+import Categories from '../Components/Categories/Categories.tsx';
+import Sort, { list } from '../Components/Sort/Sort.tsx';
 import Card from '../Components/Card/Card.jsx';
 import Skeleton from '../Components/Card/Skeleton.jsx';
 import Pagination from '../Components/Pagination/Pagination.jsx';

@@ -1,6 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import debounce from 'lodash.debounce';
-// eslint-disable-next-line import/no-cycle
 import { useDispatch } from 'react-redux';
 import style from './Search.module.scss';
 import { setSearchValue } from '../../redux/slices/filterSlice';

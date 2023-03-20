@@ -1,5 +1,3 @@
-import React from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import ContentLoader from 'react-content-loader';
 
 const Skeleton = () => (

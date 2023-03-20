@@ -1,5 +1,3 @@
-import React from 'react';
-// eslint-disable-next-line import/no-extraneous-dependencies
 import ReactPaginate from 'react-paginate';
 import style from './Pagination.module.scss';
 
