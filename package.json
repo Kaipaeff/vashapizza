@@ -73,6 +73,7 @@
     ]
   },
   "devDependencies": {
+    "@types/uniqid": "^5.3.2",
     "eslint-config-airbnb-base": "^15.0.0"
   }
 }

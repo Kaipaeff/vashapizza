@@ -11,7 +11,7 @@ import {
 import { fetchPizzas, selectPizzaData } from '../redux/slices/PizzaSlice';
 
 import Categories from '../Components/Categories/Categories.jsx';
-import Sort, { list } from '../Components/Sort/Sort.jsx';
+import Sort, { list } from '../Components/Sort/Sort.tsx';
 import Card from '../Components/Card/Card.jsx';
 import Skeleton from '../Components/Card/Skeleton.jsx';
 import Pagination from '../Components/Pagination/Pagination.jsx';

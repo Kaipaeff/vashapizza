@@ -1,10 +1,15 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable react/jsx-filename-extension */
 import React from 'react';
 import uniqid from 'uniqid';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectSort, setSort } from '../../redux/slices/filterSlice';
 
-export const list = [
+type List = {
+  name: string;
+  sortProperty: string;
+}
+
+export const list: List[] = [
   { name: 'по популярности ↑', sortProperty: 'rating' },
   { name: 'по популярности ↓', sortProperty: '-rating' },
   { name: 'по цене ↑', sortProperty: 'price' },
@@ -14,20 +19,21 @@ export const list = [
 ];
 
 function Sort() {
-  /* eslint-disable no-unused-vars */
   const dispatch = useDispatch();
+
   const sort = useSelector(selectSort);
-  const sortRef = React.useRef();
+
+  const sortRef = React.useRef<HTMLDivElement>(null);
 
   const [openMenu, setOpenMenu] = React.useState(false);
 
-  const onClickListItem = (obj) => {
+  const onClickListItem = (obj: List) => {
     dispatch(setSort(obj));
     setOpenMenu(false);
   };
 
   React.useEffect(() => {
-    const handleClickOutside = (event) => {
+    const handleClickOutside = (event: any) => {
       const path = event.composedPath();
       if (!path.includes(sortRef.current)) {
         setOpenMenu(false);
