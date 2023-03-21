@@ -1,10 +1,11 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-alert */
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // @ts-ignore
 import CartItem from '../Components/CartItem/CartItem.tsx';
-import { clearItems, selectCart } from '../redux/slices/CartSlice.js';
+import { clearItems, selectCart } from '../redux/slices/CartSlice';
 // @ts-ignore
 import CartEmpty from '../Components/CartEmpty/CartEmpty.tsx';
 
