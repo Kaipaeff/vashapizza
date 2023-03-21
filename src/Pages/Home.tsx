@@ -3,7 +3,7 @@
 /* eslint-disable max-len */
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Link, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import qs from 'qs';
 import {
   selectFilter, setCategoryId, setCurrentPage, setFilters, TSort,
@@ -138,7 +138,7 @@ const Home: React.FC = () => {
                 <div className="content__items">
                   {status === 'loading'
                     ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-                    : items.filter((item: any) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((el: any) => <Link to={`/pizza/${el.id}`} key={el.id} ><Card {...el} /></Link>)
+                    : items.filter((item: any) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((el: any) => <Card {...el} />)
                   }
                 </div>
               )
