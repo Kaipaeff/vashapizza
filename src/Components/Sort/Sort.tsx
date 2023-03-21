@@ -1,19 +1,20 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import uniqid from 'uniqid';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectSort, setSort } from '../../redux/slices/filterSlice';
 
-type List = {
+type TList = {
   name: string;
   sortProperty: string;
 }
 
-type PopupClick = MouseEvent & {
+type TPopupClick = MouseEvent & {
   path: Node[]
 }
 
-export const list: List[] = [
+export const list: TList[] = [
   { name: 'по популярности ↑', sortProperty: 'rating' },
   { name: 'по популярности ↓', sortProperty: '-rating' },
   { name: 'по цене ↑', sortProperty: 'price' },
@@ -31,14 +32,14 @@ const Sort: React.FC = () => {
 
   const [openMenu, setOpenMenu] = React.useState(false);
 
-  const onClickListItem = (obj: List) => {
+  const onClickListItem = (obj: TList) => {
     dispatch(setSort(obj));
     setOpenMenu(false);
   };
 
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      const _event = event as PopupClick;
+      const _event = event as TPopupClick;
       // const path = event.composedPath();
       if (sortRef.current && !_event.path.includes(sortRef.current)) {
         setOpenMenu(false);

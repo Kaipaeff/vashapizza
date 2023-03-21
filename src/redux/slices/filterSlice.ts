@@ -1,8 +1,22 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-extraneous-dependencies */
 import { createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../store';
 
-const initialState = {
+type TSort = {
+  name: string;
+  sortProperty: 'rating' | '-rating' | 'title' | '-title' | 'price' | '-price';
+}
+
+interface IFilterSliceState {
+  searchValue: string;
+  categoryId: number;
+  currentPage: number;
+  sort: TSort;
+}
+
+const initialState: IFilterSliceState = {
   searchValue: '',
   categoryId: 0,
   currentPage: 1,
@@ -36,9 +50,9 @@ const filterSlice = createSlice({
   },
 });
 
-export const selectSort = (state) => state.filter.sort;
+export const selectSort = (state: RootState) => state.filter.sort;
 
-export const selectFilter = (state) => state.filter;
+export const selectFilter = (state: RootState) => state.filter;
 
 export const {
   setCategoryId, setSort, setCurrentPage, setSearchValue, setFilters,

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React, { useState } from 'react';
 import uniqid from 'uniqid';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,16 +7,17 @@ import { addItem, selectCardItemById } from '../../redux/slices/CartSlice';
 
 const typeNames = ['тонкое', 'традиционное'];
 
-type CardProps = {
-  id: string
-  title: string
-  price: number
-  imageUrl: string
-  sizes: any
-  types: any
+type TCardProps = {
+  id: string;
+  title: string;
+  price: number;
+  imageUrl: string;
+  sizes: number[];
+  types: number[];
+  rating: number;
 }
 
-const Card: React.FC<CardProps> = ({
+const Card: React.FC<TCardProps> = ({
   id, title, price, imageUrl, sizes, types,
 }) => {
   const [activeType, setActiveType] = useState<number>(0);
