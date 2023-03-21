@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import uniqid from 'uniqid';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,6 +7,10 @@ import { selectSort, setSort } from '../../redux/slices/filterSlice';
 type List = {
   name: string;
   sortProperty: string;
+}
+
+type PopupClick = MouseEvent & {
+  path: Node[]
 }
 
 export const list: List[] = [
@@ -17,7 +22,7 @@ export const list: List[] = [
   { name: 'по алфавиту ↓', sortProperty: '-title' },
 ];
 
-function Sort() {
+const Sort: React.FC = () => {
   const dispatch = useDispatch();
 
   const sort = useSelector(selectSort);
@@ -32,9 +37,10 @@ function Sort() {
   };
 
   React.useEffect(() => {
-    const handleClickOutside = (event: any) => {
-      const path = event.composedPath();
-      if (!path.includes(sortRef.current)) {
+    const handleClickOutside = (event: MouseEvent) => {
+      const _event = event as PopupClick;
+      // const path = event.composedPath();
+      if (sortRef.current && !_event.path.includes(sortRef.current)) {
         setOpenMenu(false);
       }
     };
@@ -76,5 +82,5 @@ function Sort() {
 
     </div>
   );
-}
+};
 export default Sort;
