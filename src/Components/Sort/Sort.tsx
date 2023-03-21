@@ -3,11 +3,11 @@
 import React from 'react';
 import uniqid from 'uniqid';
 import { useSelector, useDispatch } from 'react-redux';
-import { selectSort, setSort } from '../../redux/slices/filterSlice';
+import { selectSort, setSort, SortPropertyEnum } from '../../redux/slices/filterSlice';
 
 type TList = {
   name: string;
-  sortProperty: string;
+  sortProperty: SortPropertyEnum;
 }
 
 type TPopupClick = MouseEvent & {
@@ -15,15 +15,15 @@ type TPopupClick = MouseEvent & {
 }
 
 export const list: TList[] = [
-  { name: 'по популярности ↑', sortProperty: 'rating' },
-  { name: 'по популярности ↓', sortProperty: '-rating' },
-  { name: 'по цене ↑', sortProperty: 'price' },
-  { name: 'по цене ↓', sortProperty: '-price' },
-  { name: 'по алфавиту ↑', sortProperty: 'title' },
-  { name: 'по алфавиту ↓', sortProperty: '-title' },
+  { name: 'по популярности ↑', sortProperty: SortPropertyEnum.RATING_ASC },
+  { name: 'по популярности ↓', sortProperty: SortPropertyEnum.RATING_DESC },
+  { name: 'по цене ↑', sortProperty: SortPropertyEnum.PRICE_ASC },
+  { name: 'по цене ↓', sortProperty: SortPropertyEnum.PRICE_DESC },
+  { name: 'по алфавиту ↑', sortProperty: SortPropertyEnum.TITLE_ASC },
+  { name: 'по алфавиту ↓', sortProperty: SortPropertyEnum.TITLE_DESC },
 ];
 
-const Sort: React.FC = () => {
+const SortPopup: React.FC = () => {
   const dispatch = useDispatch();
 
   const sort = useSelector(selectSort);
@@ -84,4 +84,4 @@ const Sort: React.FC = () => {
     </div>
   );
 };
-export default Sort;
+export default SortPopup;

@@ -1,15 +1,25 @@
+/* eslint-disable no-shadow */
 /* eslint-disable import/no-unresolved */
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-extraneous-dependencies */
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
-type TSort = {
-  name: string;
-  sortProperty: 'rating' | '-rating' | 'title' | '-title' | 'price' | '-price';
+export enum SortPropertyEnum {
+  RATING_ASC = 'rating',
+  RATING_DESC = '-rating',
+  TITLE_ASC = 'title',
+  TITLE_DESC = '-title',
+  PRICE_ASC = 'price',
+  PRICE_DESC = '-price',
 }
 
-interface IFilterSliceState {
+export type TSort = {
+  name: string;
+  sortProperty: SortPropertyEnum;
+}
+
+export interface IFilterSliceState {
   searchValue: string;
   categoryId: number;
   currentPage: number;
@@ -22,7 +32,7 @@ const initialState: IFilterSliceState = {
   currentPage: 1,
   sort: {
     name: 'по популярности',
-    sortProperty: 'rating',
+    sortProperty: SortPropertyEnum.RATING_ASC,
   },
 };
 
@@ -30,19 +40,19 @@ const filterSlice = createSlice({
   name: 'filters',
   initialState,
   reducers: {
-    setCategoryId(state, action) {
+    setCategoryId(state, action: PayloadAction<number>) {
       state.categoryId = action.payload;
     },
-    setSearchValue(state, action) {
+    setSearchValue(state, action: PayloadAction<string>) {
       state.searchValue = action.payload;
     },
-    setSort(state, action) {
+    setSort(state, action: PayloadAction<TSort>) {
       state.sort = action.payload;
     },
-    setCurrentPage(state, action) {
+    setCurrentPage(state, action: PayloadAction<number>) {
       state.currentPage = action.payload;
     },
-    setFilters(state, action) {
+    setFilters(state, action: PayloadAction<IFilterSliceState>) {
       state.sort = action.payload.sort;
       state.currentPage = Number(action.payload.currentPage);
       state.categoryId = Number(action.payload.categoryId);

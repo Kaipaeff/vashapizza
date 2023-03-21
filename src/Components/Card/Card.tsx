@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 import uniqid from 'uniqid';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { addItem, selectCardItemById } from '../../redux/slices/CartSlice';
+import { addItem, selectCardItemById, TCartItem } from '../../redux/slices/CartSlice';
 
 const typeNames = ['тонкое', 'традиционное'];
 
@@ -30,13 +30,14 @@ const Card: React.FC<TCardProps> = ({
   const addedCount = cartItem ? cartItem.count : 0;
 
   const onClickAdd = () => {
-    const item = {
+    const item: TCartItem = {
       id,
       title,
       price,
       imageUrl,
       type: typeNames[activeType],
       size: sizes[activeSize],
+      count: 0,
     };
     dispatch(addItem(item));
   };

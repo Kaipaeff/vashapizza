@@ -1,13 +1,14 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable import/no-extraneous-dependencies */
 /* eslint-disable max-len */
 import React from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import qs from 'qs';
 import {
-  selectFilter, setCategoryId, setCurrentPage, setFilters,
+  selectFilter, setCategoryId, setCurrentPage, setFilters, TSort,
 } from '../redux/slices/filterSlice';
-import { fetchPizzas, selectPizzaData } from '../redux/slices/PizzaSlice';
+import { fetchPizzas, selectPizzaData, TSearchPizzaParams } from '../redux/slices/PizzaSlice';
 // @ts-ignore
 import Categories from '../Components/Categories/Categories.tsx';
 // @ts-ignore
@@ -18,9 +19,10 @@ import Card from '../Components/Card/Card.tsx';
 import Skeleton from '../Components/Card/Skeleton.tsx';
 // @ts-ignore
 import Pagination from '../Components/Pagination/Pagination.tsx';
+import { useAppDispatch } from '../redux/store';
 
 const Home: React.FC = () => {
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isSearch = React.useRef(false);
   const isMounted = React.useRef(false);
@@ -47,12 +49,12 @@ const Home: React.FC = () => {
     const category = categoryId > 0 ? `category=${categoryId}` : '';
 
     dispatch(
-      // @ts-ignore
       fetchPizzas({
         sortBy,
         order,
         category,
         currentPage,
+        search: '',
       }),
     );
     window.scrollTo(0, 0);
@@ -76,14 +78,15 @@ const Home: React.FC = () => {
 
   React.useEffect(() => {
     if (window.location.search) {
-      const params = qs.parse(window.location.search.substring(1));
-
-      const sortProp = list.find((obj: any) => obj.sortProperty === params.sortProperty);
+      const params = qs.parse(window.location.search.substring(1)) as unknown as TSearchPizzaParams;
+      const sortProp = list.find((obj: TSort) => obj.sortProperty === params.sortBy);
 
       dispatch(
         setFilters({
-          ...params,
-          sortProp,
+          searchValue: params.search,
+          categoryId: Number(params.category),
+          currentPage: params.currentPage,
+          sort: sortProp || list[0],
         }),
       );
 
@@ -100,12 +103,12 @@ const Home: React.FC = () => {
     window.scrollTo(0, 0);
 
     if (!isSearch.current) {
-      // @ts-ignore
       fetchPizzas({
         sortBy,
         order,
         category,
         currentPage,
+        search: '',
       });
     }
 
