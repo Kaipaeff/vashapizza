@@ -3,13 +3,12 @@ import uniqid from 'uniqid';
 
 type CategoriesProps = {
   value: number;
-  onChangeCategory: any;
+  onChangeCategory: (i: number) => void;
 }
 
-const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {
-  const categories = ['Все', 'Мясная', 'Куриная', 'Грибная', 'Сырная', 'Овощная'];
+const categories = ['Все', 'Мясная', 'Куриная', 'Грибная', 'Сырная', 'Овощная'];
 
-  return (
+const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => (
     <div className="categories">
       <ul>
         {categories.map((el, i) => <li
@@ -21,7 +20,6 @@ const Categories: React.FC<CategoriesProps> = ({ value, onChangeCategory }) => {
           </li>)}
       </ul>
     </div>
-  );
-};
+);
 
 export default Categories;

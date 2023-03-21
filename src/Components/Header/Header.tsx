@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import style from './Header.module.scss';
@@ -5,7 +6,7 @@ import style from './Header.module.scss';
 import Search from '../Search/Search.tsx';
 import { selectCart } from '../../redux/slices/CartSlice';
 
-function Header() {
+const Header: React.FC = () => {
   const { totalPrice, items } = useSelector(selectCart);
 
   const location = useLocation();
@@ -51,6 +52,6 @@ function Header() {
       </div>
     </div>
   );
-}
+};
 
 export default Header;

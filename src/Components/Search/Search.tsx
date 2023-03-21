@@ -11,6 +11,7 @@ const Search: React.FC = () => {
   const [value, setValue] = React.useState('');
   const inputRef = React.useRef<HTMLInputElement>(null);
 
+  // в колбэк можно передать ----->>> event: React.MouseEvent<HTMLImageElement>
   const onClickClear = () => {
     dispatch(setSearchValue(''));
     setValue('');
@@ -21,7 +22,7 @@ const Search: React.FC = () => {
     dispatch(setSearchValue(str));
   }, 500), []);
 
-  const onChangeInput = (event: any) => {
+  const onChangeInput = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue(event.target.value);
     updateSearchValue(event.target.value);
   };
