@@ -7,18 +7,18 @@ import { useNavigate } from 'react-router-dom';
 import qs from 'qs';
 import {
   setCategoryId, setCurrentPage, setFilters,
-} from '../redux/slices/filter/slice';
-import { fetchPizzas } from '../redux/slices/pizza/slice';
+} from '../redux/filter/slice';
+import fetchPizzas from '../redux/pizza/asyncActions';
 import Categories from '../Components/Categories/Categories';
 import SortPopup, { list } from '../Components/SortPopup/SortPopup';
 import Card from '../Components/Card/Card';
 import Skeleton from '../Components/Card/Skeleton';
 import Pagination from '../Components/Pagination/Pagination';
 import { useAppDispatch } from '../redux/store';
-import { TSort } from '../redux/slices/filter/types';
-import { selectFilter } from '../redux/slices/filter/selectors';
-import selectPizzaData from '../redux/slices/pizza/selectors';
-import { TSearchPizzaParams } from '../redux/slices/pizza/types';
+import { TSort } from '../redux/filter/types';
+import { selectFilter } from '../redux/filter/selectors';
+import selectPizzaData from '../redux/pizza/selectors';
+import { TSearchPizzaParams } from '../redux/pizza/types';
 
 const Home: React.FC = () => {
   const dispatch = useAppDispatch();

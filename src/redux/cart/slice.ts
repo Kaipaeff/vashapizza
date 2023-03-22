@@ -3,8 +3,8 @@
 /* eslint-disable import/no-unresolved */
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import calcTotalPrice from '../../../utils/calcTotalPrice';
-import getCartFromLS from '../../../utils/getCartFromLS';
+import calcTotalPrice from '../../utils/calcTotalPrice';
+import getCartFromLS from '../../utils/getCartFromLS';
 import { ICartSliceState, TCartItem } from './types';
 
 const initialState: ICartSliceState = getCartFromLS();

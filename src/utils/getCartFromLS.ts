@@ -1,6 +1,6 @@
 /* eslint-disable import/no-unresolved */
 // eslint-disable-next-line import/no-unresolved
-import { TCartItem } from '../redux/slices/cart/types';
+import { TCartItem } from '../redux/cart/types';
 import calcTotalPrice from './calcTotalPrice';
 
 const getCartFromLS = () => {

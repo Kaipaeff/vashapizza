@@ -1,5 +1,5 @@
 /* eslint-disable import/no-unresolved */
-import { RootState } from '../../store';
+import { RootState } from '../store';
 
 const selectPizzaData = (state: RootState) => state.pizza;
 
