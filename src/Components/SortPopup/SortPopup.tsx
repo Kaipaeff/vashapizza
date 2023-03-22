@@ -2,8 +2,11 @@
 /* eslint-disable no-underscore-dangle */
 import React from 'react';
 import uniqid from 'uniqid';
-import { useSelector, useDispatch } from 'react-redux';
-import { selectSort, setSort, SortPropertyEnum } from '../../redux/slices/filterSlice';
+import { useDispatch } from 'react-redux';
+
+import {
+  setSort, SortPropertyEnum, TSort,
+} from '../../redux/slices/filterSlice';
 
 type TList = {
   name: string;
@@ -12,6 +15,10 @@ type TList = {
 
 type TPopupClick = MouseEvent & {
   path: Node[]
+}
+
+type TSortPopupProps = {
+  value: TSort
 }
 
 export const list: TList[] = [
@@ -23,11 +30,8 @@ export const list: TList[] = [
   { name: 'по алфавиту ↓', sortProperty: SortPropertyEnum.TITLE_DESC },
 ];
 
-const SortPopup: React.FC = () => {
+const SortPopup: React.FC<TSortPopupProps> = React.memo(({ value }) => {
   const dispatch = useDispatch();
-
-  const sort = useSelector(selectSort);
-
   const sortRef = React.useRef<HTMLDivElement>(null);
 
   const [openMenu, setOpenMenu] = React.useState(false);
@@ -62,7 +66,7 @@ const SortPopup: React.FC = () => {
             fill="#2C2C2C" />
         </svg>
         <b>Сортировка:</b>
-        <span onClick={() => setOpenMenu(!openMenu)}>{sort.name}</span>
+        <span onClick={() => setOpenMenu(!openMenu)}>{value.name}</span>
       </div>
 
      {openMenu && (
@@ -72,7 +76,7 @@ const SortPopup: React.FC = () => {
               <li
                 key={uniqid()}
                 onClick={() => onClickListItem(obj)}
-                className={sort.sortProperty === obj.sortProperty ? 'active' : ''}
+                className={value.sortProperty === obj.sortProperty ? 'active' : ''}
               >
                 {obj.name}
               </li>
@@ -83,5 +87,5 @@ const SortPopup: React.FC = () => {
 
     </div>
   );
-};
+});
 export default SortPopup;
