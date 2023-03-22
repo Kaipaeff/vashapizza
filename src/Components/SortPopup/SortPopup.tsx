@@ -3,8 +3,8 @@ import React from 'react';
 import uniqid from 'uniqid';
 import { useDispatch } from 'react-redux';
 
-import { setSort } from '../../redux/slices/filter/slice';
-import { SortPropertyEnum, TSort } from '../../redux/slices/filter/types';
+import { setSort } from '../../redux/filter/slice';
+import { SortPropertyEnum, TSort } from '../../redux/filter/types';
 
 type TList = {
   name: string;

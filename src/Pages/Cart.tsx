@@ -5,11 +5,11 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // @ts-ignore
 import CartItem from '../Components/CartItemBlock/CartItemBlock.tsx';
-import { selectCart } from '../redux/slices/cart/selectors';
+import { selectCart } from '../redux/cart/selectors';
 
 // @ts-ignore
 import CartEmpty from '../Components/CartEmpty/CartEmpty.tsx';
-import { clearItems } from '../redux/slices/cart/slice';
+import { clearItems } from '../redux/cart/slice';
 
 const Cart: React.FC = () => {
   const dispatch = useDispatch();
