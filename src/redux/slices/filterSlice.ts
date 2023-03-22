@@ -31,7 +31,7 @@ const initialState: IFilterSliceState = {
   categoryId: 0,
   currentPage: 1,
   sort: {
-    name: 'по популярности',
+    name: 'по популярности ↑',
     sortProperty: SortPropertyEnum.RATING_ASC,
   },
 };

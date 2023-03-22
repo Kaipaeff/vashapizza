@@ -9,16 +9,11 @@ import {
   selectFilter, setCategoryId, setCurrentPage, setFilters, TSort,
 } from '../redux/slices/filterSlice';
 import { fetchPizzas, selectPizzaData, TSearchPizzaParams } from '../redux/slices/PizzaSlice';
-// @ts-ignore
-import Categories from '../Components/Categories/Categories.tsx';
-// @ts-ignore
-import Sort, { list } from '../Components/Sort/Sort.tsx';
-// @ts-ignore
-import Card from '../Components/Card/Card.tsx';
-// @ts-ignore
-import Skeleton from '../Components/Card/Skeleton.tsx';
-// @ts-ignore
-import Pagination from '../Components/Pagination/Pagination.tsx';
+import Categories from '../Components/Categories/Categories';
+import SortPopup, { list } from '../Components/SortPopup/SortPopup';
+import Card from '../Components/Card/Card';
+import Skeleton from '../Components/Card/Skeleton';
+import Pagination from '../Components/Pagination/Pagination';
 import { useAppDispatch } from '../redux/store';
 
 const Home: React.FC = () => {
@@ -33,9 +28,9 @@ const Home: React.FC = () => {
 
   const { items, status } = useSelector(selectPizzaData);
 
-  const onChangeCategory = (id: number) => {
+  const onChangeCategory = React.useCallback((id: number) => {
     dispatch(setCategoryId(id));
-  };
+  }, [dispatch]);
 
   const onChangePage = (page: number) => {
     dispatch(setCurrentPage(page));
@@ -121,7 +116,7 @@ const Home: React.FC = () => {
     <div className='container'>
       <div className="content__top">
             <Categories value={categoryId} onChangeCategory={onChangeCategory}/>
-            <Sort />
+            <SortPopup value={sort} />
           </div>
           <h2 className="content__title">Все пиццы</h2>
           {
@@ -138,7 +133,7 @@ const Home: React.FC = () => {
                 <div className="content__items">
                   {status === 'loading'
                     ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-                    : items.filter((item: any) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((el: any) => <Card {...el} />)
+                    : items.filter((item: any) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((el: any) => <Card key={el.id} {...el} />)
                   }
                 </div>
               )

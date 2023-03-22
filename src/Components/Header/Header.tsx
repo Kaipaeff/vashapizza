@@ -1,3 +1,4 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -27,7 +28,7 @@ const Header: React.FC = () => {
           </div>
        </Link>
 
-       <Search />
+       { location.pathname !== '/cart' && <Search />}
 
         <div className="header__cart">
           {location.pathname !== '/cart' && (
