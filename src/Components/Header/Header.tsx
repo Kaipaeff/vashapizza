@@ -4,7 +4,7 @@ import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import style from './Header.module.scss';
 import Search from '../Search/Search';
-import { selectCart } from '../../redux/slices/CartSlice';
+import { selectCart } from '../../redux/slices/cart/selectors';
 
 const Header: React.FC = () => {
   const { totalPrice, items } = useSelector(selectCart);

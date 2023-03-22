@@ -4,10 +4,12 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 // @ts-ignore
-import CartItem from '../Components/CartItem/CartItemBlock.tsx';
-import { clearItems, selectCart } from '../redux/slices/CartSlice';
+import CartItem from '../Components/CartItemBlock/CartItemBlock.tsx';
+import { selectCart } from '../redux/slices/cart/selectors';
+
 // @ts-ignore
 import CartEmpty from '../Components/CartEmpty/CartEmpty.tsx';
+import { clearItems } from '../redux/slices/cart/slice';
 
 const Cart: React.FC = () => {
   const dispatch = useDispatch();

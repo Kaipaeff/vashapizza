@@ -1,36 +1,13 @@
-/* eslint-disable import/no-unresolved */
 /* eslint-disable no-param-reassign */
-/* eslint-disable max-len */
 /* eslint-disable no-plusplus */
+/* eslint-disable import/no-unresolved */
+
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import calcTotalPrice from '../../utils/calcTotalPrice';
-import getCartFromLS from '../../utils/getCartFromLS';
-import { RootState } from '../store';
+import calcTotalPrice from '../../../utils/calcTotalPrice';
+import getCartFromLS from '../../../utils/getCartFromLS';
+import { ICartSliceState, TCartItem } from './types';
 
-export type TCartItem = {
-  id: string;
-  title: string;
-  price: number;
-  imageUrl: string;
-  type: string;
-  size: number;
-  count: number;
-}
-
-// если нужно типизировать стэйт, то обычно это делают через interface, а не type
-interface ICartSliceState {
-  totalPrice: number;
-  items: TCartItem[];
-  // price: number;
-}
-
-const { items, totalPrice } = getCartFromLS();
-
-const initialState: ICartSliceState = {
-  totalPrice,
-  items,
-  // price,
-};
+const initialState: ICartSliceState = getCartFromLS();
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -75,9 +52,6 @@ const cartSlice = createSlice({
 
   },
 });
-
-export const selectCart = (state: RootState) => state.cart;
-export const selectCardItemById = (id: string) => (state: RootState) => state.cart.items.find((obj: { id: string; }) => obj.id === id);
 
 export const {
   addItem, removeItem, clearItems, minusItem,

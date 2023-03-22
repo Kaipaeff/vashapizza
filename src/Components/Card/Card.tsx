@@ -4,7 +4,9 @@ import uniqid from 'uniqid';
 import { useDispatch, useSelector } from 'react-redux';
 
 import { Link } from 'react-router-dom';
-import { addItem, selectCardItemById, TCartItem } from '../../redux/slices/CartSlice';
+import { addItem } from '../../redux/slices/cart/slice';
+import { selectCardItemById } from '../../redux/slices/cart/selectors';
+import { TCartItem } from '../../redux/slices/cart/types';
 
 const typeNames = ['тонкое', 'традиционное'];
 

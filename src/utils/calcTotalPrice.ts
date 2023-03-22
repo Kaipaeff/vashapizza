@@ -1,6 +1,6 @@
 /* eslint-disable max-len */
 /* eslint-disable import/no-unresolved */
-import { TCartItem } from '../redux/slices/CartSlice';
+import { TCartItem } from '../redux/slices/cart/types';
 
 const calcTotalPrice = (items: TCartItem[]) => items.reduce((sum, obj) => obj.price * obj.count + sum, 0);
 
