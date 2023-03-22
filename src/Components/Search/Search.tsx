@@ -1,10 +1,11 @@
+/* eslint-disable import/no-unresolved */
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import debounce from 'lodash.debounce';
 import { useDispatch } from 'react-redux';
 // @ts-ignore
 import style from './Search.module.scss';
-import { setSearchValue } from '../../redux/slices/filterSlice';
+import { setSearchValue } from '../../redux/slices/filter/slice';
 
 const Search: React.FC = () => {
   const dispatch = useDispatch();

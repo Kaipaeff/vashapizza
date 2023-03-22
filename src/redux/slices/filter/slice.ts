@@ -3,28 +3,7 @@
 /* eslint-disable no-param-reassign */
 /* eslint-disable import/no-extraneous-dependencies */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../store';
-
-export enum SortPropertyEnum {
-  RATING_ASC = 'rating',
-  RATING_DESC = '-rating',
-  TITLE_ASC = 'title',
-  TITLE_DESC = '-title',
-  PRICE_ASC = 'price',
-  PRICE_DESC = '-price',
-}
-
-export type TSort = {
-  name: string;
-  sortProperty: SortPropertyEnum;
-}
-
-export interface IFilterSliceState {
-  searchValue: string;
-  categoryId: number;
-  currentPage: number;
-  sort: TSort;
-}
+import { IFilterSliceState, SortPropertyEnum, TSort } from './types';
 
 const initialState: IFilterSliceState = {
   searchValue: '',
@@ -59,10 +38,6 @@ const filterSlice = createSlice({
     },
   },
 });
-
-export const selectSort = (state: RootState) => state.filter.sort;
-
-export const selectFilter = (state: RootState) => state.filter;
 
 export const {
   setCategoryId, setSort, setCurrentPage, setSearchValue, setFilters,
