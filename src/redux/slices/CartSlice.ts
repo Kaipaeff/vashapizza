@@ -19,11 +19,13 @@ export type TCartItem = {
 interface ICartSliceState {
   totalPrice: number;
   items: TCartItem[];
+  price: number;
 }
 
 const initialState: ICartSliceState = {
   totalPrice: 0,
   items: [],
+  price: 0,
 };
 
 const cartSlice = createSlice({
@@ -45,7 +47,7 @@ const cartSlice = createSlice({
 
     minusItem(state, action: PayloadAction<string>) {
       const findItem = state.items.find((obj) => obj.id === action.payload);
-      if (findItem && findItem.count > 0) {
+      if (findItem && findItem.count > 1) {
         findItem.count--;
         state.totalPrice -= findItem.price;
       }
@@ -53,12 +55,15 @@ const cartSlice = createSlice({
         state.totalPrice = 0;
       }
     },
+
     removeItem(state, action: PayloadAction<string>) {
       state.items = state.items.filter((obj) => obj.id !== action.payload);
-      if (!state.items) {
+      // state.totalPrice -= state.price;
+      if (!state.items.length) {
         state.totalPrice = 0;
       }
     },
+
     clearItems(state) {
       state.items = [];
       state.totalPrice = 0;
