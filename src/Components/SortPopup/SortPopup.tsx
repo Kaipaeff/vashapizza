@@ -1,5 +1,4 @@
 /* eslint-disable import/no-unresolved */
-/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import uniqid from 'uniqid';
 import { useDispatch } from 'react-redux';
@@ -43,9 +42,9 @@ const SortPopup: React.FC<TSortPopupProps> = React.memo(({ value }) => {
 
   React.useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      const _event = event as TPopupClick;
+      const eventT = event as TPopupClick;
       // const path = event.composedPath();
-      if (sortRef.current && !_event.path.includes(sortRef.current)) {
+      if (sortRef.current && !eventT.path.includes(sortRef.current)) {
         setOpenMenu(false);
       }
     };

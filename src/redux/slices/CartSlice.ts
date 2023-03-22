@@ -1,8 +1,10 @@
 /* eslint-disable import/no-unresolved */
+/* eslint-disable no-param-reassign */
 /* eslint-disable max-len */
 /* eslint-disable no-plusplus */
-/* eslint-disable no-param-reassign */
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import calcTotalPrice from '../../utils/calcTotalPrice';
+import getCartFromLS from '../../utils/getCartFromLS';
 import { RootState } from '../store';
 
 export type TCartItem = {
@@ -19,13 +21,15 @@ export type TCartItem = {
 interface ICartSliceState {
   totalPrice: number;
   items: TCartItem[];
-  price: number;
+  // price: number;
 }
 
+const { items, totalPrice } = getCartFromLS();
+
 const initialState: ICartSliceState = {
-  totalPrice: 0,
-  items: [],
-  price: 0,
+  totalPrice,
+  items,
+  // price,
 };
 
 const cartSlice = createSlice({
@@ -42,7 +46,7 @@ const cartSlice = createSlice({
           count: 1,
         });
       }
-      state.totalPrice = state.items.reduce((sum, obj) => (obj.price * obj.count) + sum, 0);
+      state.totalPrice = calcTotalPrice(state.items);
     },
 
     minusItem(state, action: PayloadAction<string>) {
@@ -73,7 +77,7 @@ const cartSlice = createSlice({
 });
 
 export const selectCart = (state: RootState) => state.cart;
-export const selectCardItemById = (id: string) => (state: RootState) => state.cart.items.find((obj) => obj.id === id);
+export const selectCardItemById = (id: string) => (state: RootState) => state.cart.items.find((obj: { id: string; }) => obj.id === id);
 
 export const {
   addItem, removeItem, clearItems, minusItem,
