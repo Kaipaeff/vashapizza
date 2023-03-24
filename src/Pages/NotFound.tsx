@@ -1,6 +1,6 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
-// @ts-ignore
-import NotFoundBlock from '../Components/NotFoundBlock/index.tsx';
+import NotFoundBlock from '../Components/NotFoundBlock/index';
 
 const NotFound: React.FC = () => <NotFoundBlock />;
 

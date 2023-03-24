@@ -1,24 +1,40 @@
 /* eslint-disable import/no-unresolved */
+import React, { Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
-import NotFoundBlock from './Components/NotFoundBlock/index';
-// @ts-ignore
-import Home from './Pages/Home.tsx';
-// @ts-ignore
-import Cart from './Pages/Cart.tsx';
-import FullPizza from './Pages/FullPizza';
+import Home from './Pages/Home';
 import './scss/app.scss';
-// @ts-ignore
-import MainLayout from './Layouts/MainLayout.tsx';
+import MainLayout from './Layouts/MainLayout';
+
+const Cart = React.lazy(() => import('./Pages/Cart'));
+const FullPizza = React.lazy(() => import('./Pages/FullPizza'));
+const NotFound = React.lazy(() => import('./Pages/NotFound'));
 
 function App() {
   return (
 
     <Routes>
       <Route path='/' element={<MainLayout />}>
+
         <Route path='' element={<Home />} />
-        <Route path='cart' element={<Cart />} />
-        <Route path='pizza/:id' element={<FullPizza />} />
-        <Route path='*' element={<NotFoundBlock />} />
+
+        <Route path='cart' element={
+          <Suspense fallback={<div>Идет загрузка...</div>}>
+            <Cart />
+          </Suspense>
+        }/>
+
+        <Route path='pizza/:id' element={
+          <Suspense fallback={<div>Идет загрузка...</div>}>
+            <FullPizza />
+          </Suspense>
+        }/>
+
+        <Route path='*' element={
+          <Suspense>
+            <NotFound />
+          </Suspense>
+        }/>
+
       </Route>
     </Routes>
 
