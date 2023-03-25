@@ -1,19 +1,21 @@
 /* eslint-disable import/no-unresolved */
 /* eslint-disable import/no-extraneous-dependencies */
-/* eslint-disable max-len */
+
 import React from 'react';
-import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import qs from 'qs';
-import {
-  setCategoryId, setCurrentPage, setFilters,
-} from '../redux/filter/slice';
-import fetchPizzas from '../redux/pizza/asyncActions';
+
 import Categories from '../Components/Categories/Categories';
 import SortPopup, { list } from '../Components/SortPopup/SortPopup';
 import Card from '../Components/Card/Card';
 import Skeleton from '../Components/Card/Skeleton';
 import Pagination from '../Components/Pagination/Pagination';
+
+import {
+  setCategoryId, setCurrentPage, setFilters,
+} from '../redux/filter/slice';
+import fetchPizzas from '../redux/pizza/asyncActions';
 import { useAppDispatch } from '../redux/store';
 import { TSort } from '../redux/filter/types';
 import { selectFilter } from '../redux/filter/selectors';
@@ -119,31 +121,33 @@ const Home: React.FC = () => {
   return (
     <div className='container'>
       <div className="content__top">
-            <Categories value={categoryId} onChangeCategory={onChangeCategory}/>
-            <SortPopup value={sort} />
-          </div>
-          <h2 className="content__title">Все пиццы</h2>
-          {
-            status === 'error'
-              ? (
-                <div className='content__error-info'>
-                <h2>Произошла ошибка 😕</h2>
-                <p>
-                  К сожалению, не удалось получить данные для загрузки. Попробуйте повторить попытку позже.
-                </p>
-              </div>
-              )
-              : (
-                <div className="content__items">
-                  {status === 'loading'
-                    ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
-                    : items.filter((item: any) => item.title.toLowerCase().includes(searchValue.toLowerCase())).map((el: any) => <Card key={el.id} {...el} />)
-                  }
-                </div>
-              )
-          }
+        <Categories value={categoryId} onChangeCategory={onChangeCategory} />
+        <SortPopup value={sort} />
+      </div>
+      <h2 className="content__title">Все пиццы</h2>
+      {
+        status === 'error'
+          ? (
+            <div className='content__error-info'>
+              <h2>Произошла ошибка 😕</h2>
+              <p>
+                К сожалению, не удалось получить данные для загрузки.
+                Попробуйте повторить попытку позже.
+              </p>
+            </div>
+          )
+          : (
+            <div className="content__items">
+              {status === 'loading'
+                ? [...new Array(8)].map((_, index) => <Skeleton key={index} />)
+                : items.filter((item: any) => item.title.toLowerCase().includes(searchValue.toLowerCase()))
+                  .map((el: any) => <Card key={el.id} {...el} />)
+              }
+            </div>
+          )
+      }
 
-          <Pagination currentPage={currentPage} onChangePage={onChangePage}/>
+      <Pagination currentPage={currentPage} onChangePage={onChangePage} />
     </div>
   );
 };
