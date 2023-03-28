@@ -1,12 +1,15 @@
 /* eslint-disable import/no-unresolved */
+/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import style from './Header.module.scss';
-import Search from '../Search/Search';
 import { selectCart } from '../../redux/cart/selectors';
 
-const Header: React.FC = () => {
+import style from './Header.module.scss';
+
+import { Search } from '../../Components';
+
+export const Header: React.FC = () => {
   const { totalPrice, items } = useSelector(selectCart);
   const location = useLocation();
   const isMounted = React.useRef(false);
@@ -61,5 +64,3 @@ const Header: React.FC = () => {
     </div>
   );
 };
-
-export default Header;

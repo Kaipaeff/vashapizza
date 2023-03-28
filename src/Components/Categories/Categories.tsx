@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import uniqid from 'uniqid';
 
@@ -9,7 +9,7 @@ type CategoriesProps = {
 
 const categories = ['Все', 'Мясная', 'Куриная', 'Грибная', 'Сырная', 'Овощная'];
 
-const Categories: React.FC<CategoriesProps> = React.memo(({ value, onChangeCategory }) => (
+export const Categories: React.FC<CategoriesProps> = React.memo(({ value, onChangeCategory }) => (
     <div className="categories">
     <ul>
       {categories.map((el, i) => <li
@@ -22,5 +22,3 @@ const Categories: React.FC<CategoriesProps> = React.memo(({ value, onChangeCateg
     </ul>
   </div>
 ));
-
-export default Categories;

@@ -28,7 +28,7 @@ export const list: TList[] = [
   { name: 'по алфавиту ↓', sortProperty: SortPropertyEnum.TITLE_DESC },
 ];
 
-const SortPopup: React.FC<TSortPopupProps> = React.memo(({ value }) => {
+export const SortPopup: React.FC<TSortPopupProps> = React.memo(({ value }) => {
   const dispatch = useDispatch();
   const sortRef = React.useRef<HTMLDivElement>(null);
 
@@ -86,4 +86,3 @@ const SortPopup: React.FC<TSortPopupProps> = React.memo(({ value }) => {
     </div>
   );
 });
-export default SortPopup;

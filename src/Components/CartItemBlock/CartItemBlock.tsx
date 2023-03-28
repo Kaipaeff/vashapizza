@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 /* eslint-disable import/no-unresolved */
 import React from 'react';
 import { useDispatch } from 'react-redux';
@@ -13,7 +14,7 @@ type CartItemProps = {
   imageUrl: string;
 }
 
-const CartItemBlock: React.FC<CartItemProps> = ({
+export const CartItemBlock: React.FC<CartItemProps> = ({
   id, title, type, size, price, count, imageUrl,
 }) => {
   const dispatch = useDispatch();
@@ -99,5 +100,3 @@ const CartItemBlock: React.FC<CartItemProps> = ({
       </div>
   );
 };
-
-export default CartItemBlock;

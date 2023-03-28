@@ -1,7 +1,7 @@
+/* eslint-disable import/no-unresolved */
 import React from 'react';
 import { Outlet } from 'react-router-dom';
-// @ts-ignore
-import Header from '../Components/Header/Header.tsx';
+import { Header } from '../Components';
 
 const MainLayout: React.FC = () => (
       <div className="wrapper">

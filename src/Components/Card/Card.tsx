@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 /* eslint-disable import/no-unresolved */
 import React, { useState } from 'react';
 import uniqid from 'uniqid';
@@ -20,7 +21,7 @@ type TCardProps = {
   rating: number;
 }
 
-const Card: React.FC<TCardProps> = ({
+export const Card: React.FC<TCardProps> = ({
   id, title, price, imageUrl, sizes, types,
 }) => {
   const [activeType, setActiveType] = useState<number>(0);
@@ -95,5 +96,3 @@ const Card: React.FC<TCardProps> = ({
     </div>
   );
 };
-
-export default Card;
