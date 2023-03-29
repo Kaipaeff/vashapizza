@@ -1,7 +1,7 @@
 /* eslint-disable no-alert */
 import React from 'react';
 import axios from 'axios';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams, useNavigate, Link } from 'react-router-dom';
 
 export default function FullPizza() {
   const [pizza, setPizza] = React.useState<{
@@ -51,6 +51,10 @@ export default function FullPizza() {
               и острым соусом от "Ваша Пицца". Остро, обжигающе, запоминающийся вкус!</p>
 
             <h2>Цена: от {pizza.price} руб.</h2>
+
+            <Link to="/" className="button button--black">
+              <span>Вернуться назад</span>
+            </Link>
 
           </div>
        </div>

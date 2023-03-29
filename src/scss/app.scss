@@ -578,11 +578,20 @@ body {
 
   h2 {
     font-weight: 800;
+    opacity: 60%;
+
+    margin-bottom: 20px;
+
 
     @media (max-width: 414px) {
-      font-size: 14px;
+      font-size: 18px;
       opacity: 60%;
+      margin-bottom: 20px;
     }
+  }
+
+  .button--black {
+    width: 200px;
   }
 }
 
@@ -607,7 +616,7 @@ body {
 }
 
 .full-pizza-arrow {
-  margin: 0 0 30px 30px;
+  margin: 0 0 30px 20px;
   font-size: 18px;
   opacity: 70%;
   cursor: pointer;
