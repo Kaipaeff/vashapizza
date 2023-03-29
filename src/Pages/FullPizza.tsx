@@ -34,11 +34,27 @@ export default function FullPizza() {
   }
 
   return (
-    <div className='container'>
-      <h1>{pizza.title}</h1>
-      <p onClick={() => navigate(-1)} style={{ cursor: 'pointer' }}>←назад</p>
-      <img src={pizza.imageUrl} alt="pizza" />
-      <p>Цена {pizza.price} руб.</p>
+    <div className="container">
+      <p className='full-pizza-arrow' onClick={() => navigate(-1)}>←назад</p>
+      <div className="full-pizza-wrappper">
+        <div className='content-full-pizza'>
+          <div className="content-left">
+            <img className='full-pizza-img' src={pizza.imageUrl} alt="pizza" />
+          </div>
+          <div className="content-right">
+
+            <h1 className='full-pizza-title'>{pizza.title}</h1>
+
+            <p>Фирменный соус, моцарелла, цыпленок и томатный соус.
+              Великолепная пицца "{pizza.title}" с куриной грудкой, помидорами,
+              болгарским и острым перцем, зеленью, оливками, двумя видами сыра
+              и острым соусом от "Ваша Пицца". Остро, обжигающе, запоминающийся вкус!</p>
+
+            <h2>Цена: от {pizza.price} руб.</h2>
+
+          </div>
+       </div>
+      </div>
     </div>
   );
 }
