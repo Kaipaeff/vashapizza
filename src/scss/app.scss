@@ -94,16 +94,17 @@ body {
       .sort {
         padding-left: 20px;
 
+        @media (max-width: 414px) {
+          padding-left: 0;
+          width: 163px;
+        }
+
         b {
           display: none;
         }
 
         span {
-          width: 143px;
-
-          @media (max-width: 414px) {
-            width: 145px;
-          }
+          width:max-content;
         }
       }
 
