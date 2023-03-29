@@ -3,13 +3,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
-// @ts-ignore
-import CartItem from '../Components/CartItemBlock/CartItemBlock.tsx';
-import { selectCart } from '../redux/cart/selectors';
 
-// @ts-ignore
-import CartEmpty from '../Components/CartEmpty/CartEmpty.tsx';
+import { selectCart } from '../redux/cart/selectors';
 import { clearItems } from '../redux/cart/slice';
+
+import { CartEmpty, CartItemBlock } from '../Components';
 
 const Cart: React.FC = () => {
   const dispatch = useDispatch();
@@ -63,7 +61,7 @@ const Cart: React.FC = () => {
         </div>
         <div className="content__items">
           {
-            items.map((item: any) => <CartItem key={item.id} {...item}/>)
+            items.map((item: any) => <CartItemBlock key={item.id} {...item}/>)
           }
 
         </div>

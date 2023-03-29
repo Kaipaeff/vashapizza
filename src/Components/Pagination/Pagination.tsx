@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import ReactPaginate from 'react-paginate';
 import style from './Pagination.module.scss';
@@ -7,7 +8,7 @@ type PaginationProps = {
   onChangePage: (page: number) => void;
 }
 
-const Pagination: React.FC<PaginationProps> = ({ onChangePage, currentPage }) => (
+export const Pagination: React.FC<PaginationProps> = ({ onChangePage, currentPage }) => (
     <ReactPaginate
       className={style.root}
       breakLabel="..."
@@ -19,5 +20,3 @@ const Pagination: React.FC<PaginationProps> = ({ onChangePage, currentPage }) =>
       forcePage={currentPage - 1 }
     />
 );
-
-export default Pagination;

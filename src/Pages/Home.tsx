@@ -6,11 +6,10 @@ import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import qs from 'qs';
 
-import Categories from '../Components/Categories/Categories';
-import SortPopup, { list } from '../Components/SortPopup/SortPopup';
-import Card from '../Components/Card/Card';
-import Skeleton from '../Components/Card/Skeleton';
-import Pagination from '../Components/Pagination/Pagination';
+import {
+  Categories, Card, Skeleton, Pagination, SortPopup,
+} from '../Components';
+import { list } from '../Components/SortPopup/SortPopup';
 
 import {
   setCategoryId, setCurrentPage, setFilters,

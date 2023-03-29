@@ -3,6 +3,11 @@
 .sort {
   position: relative;
   width: 270px;
+
+  @media (max-width: 820px) {
+    width: 180px;
+  }
+
   &__label {
     display: flex;
     align-items: center;
@@ -17,9 +22,10 @@
 
     span {
       color: $orange;
-      border-bottom: 1px dashed $orange;
+      border-bottom: 1px none $orange;
       cursor: pointer;
     }
+
   }
 
   &__popup {
@@ -35,6 +41,7 @@
 
     ul {
       overflow: hidden;
+
       li {
         padding: 12px 20px;
         cursor: pointer;

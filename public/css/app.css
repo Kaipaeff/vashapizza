@@ -332,7 +332,7 @@ a {
 
 .sort__label span {
   color: #fe5f1e;
-  border-bottom: 1px dashed #fe5f1e;
+  border-bottom: 1px none #fe5f1e;
   cursor: pointer
 }
 

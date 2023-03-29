@@ -1,11 +1,13 @@
 @import '../variables';
 
 .button {
-  display: inline-block;
+  display: flex;
+  justify-content: center;
   background-color: $orange;
   border-radius: 30px;
   padding: 10px 20px;
-  min-width: 100px;
+  width: 190px;
+  max-height: 51px;
   text-align: center;
   cursor: pointer;
   transition: background-color $duration ease-in-out, border-color $duration ease-in-out;
@@ -133,7 +135,7 @@
     display: flex;
     align-items: center;
     line-height: 23px;
-    padding: 12px 25px;
+    padding: 12px 24px;
 
     svg {
       margin-right: 8px;

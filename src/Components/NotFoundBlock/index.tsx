@@ -1,7 +1,8 @@
+/* eslint-disable import/prefer-default-export */
 import React from 'react';
 import style from './NotFoundBlock.module.scss';
 
-const NotFoundBlock: React.FC = () => (
+export const NotFoundBlock: React.FC = () => (
     <div className={style.root}>
       <h1>
         <span>&#128577;</span>
@@ -13,5 +14,3 @@ const NotFoundBlock: React.FC = () => (
       </p>
     </div>
 );
-
-export default NotFoundBlock;
