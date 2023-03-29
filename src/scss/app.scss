@@ -21,10 +21,15 @@ body {
     margin-top: 15px;
   }
 
+  @media (max-width: 670px) {
+    margin: 23px auto;
+    height: 100vh;
+  }
+
 }
 
 .content {
-  padding: 40px 0;
+  padding: 20px 0;
 
   &__error-info {
     width: 500px;
@@ -397,9 +402,18 @@ body {
     width: 560px;
     text-align: center;
 
+    @media (max-width: 670px) {
+      width: 300px;
+      margin: 20px auto;
+    }
+
     h2 {
       font-size: 32px;
       margin-bottom: 10px;
+
+      @media (max-width: 670px) {
+        font-size: 22px;
+      }
     }
 
     p {
@@ -407,6 +421,10 @@ body {
       line-height: 145.4%;
       letter-spacing: 0.01em;
       color: #777777;
+
+      @media (max-width: 670px) {
+        font-size: 12px;
+      }
     }
 
     icon {
@@ -416,16 +434,20 @@ body {
 
     img {
       display: block;
-      width: 300px;
+      width: 200px;
       margin: 45px auto 60px;
+
+      @media (max-width: 670px) {
+        margin: 20px auto 20px;
+      }
     }
 
     .button--black {
       padding: 12px 0 14px;
-      width: 230px;
+      width: 180px;
       margin: 0 auto;
       font-weight: 600;
-      font-size: 18px;
+      font-size: 14px;
     }
   }
 }
