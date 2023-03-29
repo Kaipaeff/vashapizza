@@ -17,6 +17,10 @@
 
     p {
       font-size: 12px;
+
+      @media (max-width: 414px) {
+        font-size: 18px;
+      }
     }
   }
 
