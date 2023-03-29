@@ -115,7 +115,7 @@ body {
 
     }
 
-    @media (max-width: 390px) {
+    @media (max-width: 414px) {
 
       .categories {
         ul {
@@ -245,7 +245,7 @@ body {
           margin-right: 10px;
         }
 
-        @media (max-width: 375px) {
+        @media (max-width: 414px) {
           width: 50px;
           height: 50px;
         }
@@ -273,8 +273,8 @@ body {
           margin-left: 10px;
         }
 
-        @media (max-width: 375px) {
-          font-size: 12px;
+        @media (max-width: 414px) {
+          font-size: 14px;
           line-height: 14px;
         }
       }
@@ -288,8 +288,8 @@ body {
           margin-left: 10px;
         }
 
-        @media (max-width: 375px) {
-          font-size: 10px;
+        @media (max-width: 414px) {
+          font-size: 12px;
         }
       }
     }
@@ -352,7 +352,7 @@ body {
         font-size: 22px;
         letter-spacing: 0.01em;
 
-        @media (max-width: 375px) {
+        @media (max-width: 414px) {
           font-size: 16px;
         }
       }
