@@ -34,7 +34,7 @@ export default function FullPizza() {
   }
 
   return (
-    <div className="container">
+    <div className="full-pizza-container">
       <p className='full-pizza-arrow' onClick={() => navigate(-1)}>←назад</p>
       <div className="full-pizza-wrappper">
         <div className='content-full-pizza'>
