@@ -531,9 +531,14 @@ body {
 }
 
 
+.full-pizza-container {
+  @media (max-width: 414px) {
+    height: 100vh;
+  }
+}
+
 .full-pizza-wrappper {
   width: 1200px;
-  height: 100vh;
   border: 1px solid #c4c4c4;
   border-radius: 30px;
   margin: 20px auto;
